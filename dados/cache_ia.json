@@ -1,0 +1,86 @@
+{
+ "50a9fce69bd78fbbb1abdcedc5f5f1730e4cd16f": {
+  "natureza": "Política pública",
+  "tema": "Infraestrutura, transporte e energia",
+  "resumo": "A proposta cria uma política para incentivar a troca de óleo diesel por biocombustíveis e bioenergia feitos de biomassa na Região Norte. O objetivo é usar materiais locais e sustentáveis para gerar energia. A medida afeta áreas que dependem de sistemas isolados de energia.",
+  "afeta_para": true
+ },
+ "42b70cdebf2ccbfb0c31473b3024ce2a292992a2": {
+  "tipo_votacao": "Mérito",
+  "tema": "Economia e tributos",
+  "resumo": "Os deputados votaram uma proposta sobre as regras para a resolução de instituições financeiras e de seguros autorizadas pelo governo. O texto principal foi rejeitado pela Câmara.",
+  "afeta_para": false
+ },
+ "7107153b848913e231ad804b8f40ad21701b5be8": {
+  "tipo_votacao": "Procedimento",
+  "tema": "Economia e tributos",
+  "resumo": "Foi votado um requerimento sobre o projeto que altera as regras de receita e número de empregados do Microempreendedor Individual. O pedido foi rejeitado pela maioria dos deputados.",
+  "afeta_para": false
+ },
+ "5ae4d53f3014880b6b5f89ad59015f813e58ebda": {
+  "tipo_votacao": "Mérito",
+  "tema": "Economia e tributos",
+  "resumo": "A Câmara dos Deputados aprovou mudanças nas regras do Microempreendedor Individual. A proposta altera o limite de faturamento anual e a quantidade de trabalhadores contratados. O texto foi aprovado por 461 votos a favor e 4 contrários.",
+  "afeta_para": false
+ },
+ "9f4848a5ed6359f0444811989395e26de89212bf": {
+  "tipo_votacao": "Mérito",
+  "tema": "Trabalho e previdência",
+  "resumo": "Os senadores votaram uma proposta para reduzir o limite de horas de trabalho por semana e garantir dois dias de descanso remunerado, sem cortar o salário. A medida foi aprovada.",
+  "afeta_para": false
+ },
+ "5f756c9ac8286a520f53274d758b01ef2970be1c": {
+  "tipo_votacao": "Mérito",
+  "tema": "Trabalho e previdência",
+  "resumo": "Os senadores votaram uma proposta para reduzir o limite de horas de trabalho por semana e garantir dois dias de descanso remunerado, sem cortar o salário. A medida foi aprovada em segundo turno.",
+  "afeta_para": false
+ },
+ "e52fed2a76dd82f26ea6599b212c511c0dff1094": {
+  "tipo_votacao": "Mérito",
+  "tema": "Economia e tributos",
+  "resumo": "O Senado votou o projeto que atualiza o limite de faturamento anual e o número de empregados para o Microempreendedor Individual. A proposta também trata do perdão de dívidas com a União. O texto foi aprovado.",
+  "afeta_para": false
+ },
+ "4366d5052cfb22ad880bb4fa5232c00c1d15c99f": {
+  "natureza": "Política pública",
+  "tema": "Infraestrutura, transporte e energia",
+  "resumo": "O projeto cria uma política para incentivar a troca de óleo diesel por bioenergia na Região Norte. A medida afeta quem vive em áreas isoladas da região.",
+  "afeta_para": true
+ },
+ "6c1d284120b05f49a1a4e18d7b2b133885fb2f61": {
+  "tipo_votacao": "Mérito",
+  "tema": "Economia e tributos",
+  "resumo": "Foi votada uma versão alternativa para regras sobre regimes de resolução de instituições financeiras e de seguros. A proposta alternativa foi rejeitada.",
+  "afeta_para": false
+ },
+ "bcfb256e6324f37764670688a20715c3617254ba": {
+  "tipo_votacao": "Procedimento",
+  "tema": "Economia e tributos",
+  "resumo": "Foi votado um pedido de mudança no andamento do projeto sobre o limite de faturamento e número de empregados do Microempreendedor Individual. O pedido foi rejeitado pela maioria dos deputados.",
+  "afeta_para": false
+ },
+ "5f9d4bc94f0acfa742f205f97e91b71f6e357418": {
+  "tipo_votacao": "Mérito",
+  "tema": "Economia e tributos",
+  "resumo": "Foi votado um texto alternativo que muda as regras do Microempreendedor Individual. A proposta mexe no limite de faturamento anual e na quantidade de empregados permitida. O texto foi aprovado pela Câmara.",
+  "afeta_para": false
+ },
+ "3c4c19fa451658f5b031f09cae841eb3c6bac4b3": {
+  "tipo_votacao": "Mérito",
+  "tema": "Trabalho e previdência",
+  "resumo": "Foi votada em primeiro turno a proposta para reduzir o limite de horas de trabalho por semana na Constituição. O texto prevê dois dias de descanso remunerado por semana sem cortar o salário. A proposta foi aprovada.",
+  "afeta_para": false
+ },
+ "cefaaa457a395b6e8d10f6e32e6ca845ddd3be94": {
+  "tipo_votacao": "Mérito",
+  "tema": "Trabalho e previdência",
+  "resumo": "Foi votada em segundo turno a proposta para reduzir a duração máxima semanal do trabalho. O texto também prevê dois dias de repouso semanal remunerado sem redução de salário. A proposta foi aprovada.",
+  "afeta_para": false
+ },
+ "6efd1e62e5954bddb61564a5b0aa925c38107add": {
+  "tipo_votacao": "Mérito",
+  "tema": "Economia e tributos",
+  "resumo": "Foi votado o projeto que altera as regras do Microempreendedor Individual para atualizar o limite de faturamento anual e o número de empregados. O texto também trata do perdão de dívidas com a União. A proposta foi aprovada.",
+  "afeta_para": false
+ }
+}
