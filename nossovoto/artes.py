@@ -309,6 +309,30 @@ def arte_proposicao(p: Proposicao, analise: Analise | None, por_id: dict[tuple[s
     return imagem
 
 
+def arte_aviso(texto: str) -> Image.Image:
+    """Arte de aviso (comando /aviso). Com mais de uma linha, a primeira vira o título."""
+    imagem, d = moldura("", "Nosso Voto Pará · projeto apartidário")
+    d.text((MARGEM, 206), "AVISO", font=fonte("Bold", 28), fill=DOURADO)
+    linhas = [linha.strip() for linha in texto.strip().splitlines() if linha.strip()]
+    titulo, corpo = (linhas[0], " ".join(linhas[1:])) if len(linhas) > 1 else (None, " ".join(linhas))
+    largura, topo, base = LARGURA - 2 * MARGEM, 260, 1040
+
+    def desenhar(desenho: ImageDraw.ImageDraw, deslocamento: int) -> int:
+        y = topo + deslocamento
+        if titulo:
+            y = texto_em_caixa(desenho, titulo, MARGEM, y, largura, 260, "ExtraBold", 72, 44, entrelinha=1.2) + 40
+        altura_corpo = base - (y - deslocamento)  # a mesma nas duas passadas, para a letra sair do mesmo tamanho
+        return texto_em_caixa(desenho, corpo, MARGEM, y, largura, altura_corpo,
+                              "SemiBold" if titulo is None else "Medium", 56 if titulo is None else 44, 28)
+
+    # Primeiro mede num rascunho, depois desenha centralizado na altura disponível
+    fim = desenhar(ImageDraw.Draw(Image.new("RGB", (LARGURA, ALTURA))), 0)
+    desenhar(d, max(0, (base - fim) // 2))
+    coruja = _coruja(130)
+    imagem.paste(coruja, ((LARGURA - 130) // 2, 1080), coruja)
+    return imagem
+
+
 def nome_arquivo(item: Proposicao | Votacao) -> str:
     return re.sub(r"[^A-Za-z0-9_-]+", "_", chave(item))
 

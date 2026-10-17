@@ -1,5 +1,12 @@
+from datetime import date
+from pathlib import Path
+
+import pytest
+
 from nossovoto import aprovacao
+from nossovoto.armazenamento import Coleta
 from nossovoto.fila import AGUARDANDO_LEGENDA, DESCARTADO, PENDENTE, PUBLICADO, Fila
+from nossovoto.modelos import Parlamentar, Proposicao
 
 CHAT = "42"
 
@@ -7,7 +14,10 @@ CHAT = "42"
 class BotFalso:
     def __init__(self, atualizacoes):
         self._atualizacoes = atualizacoes
-        self.textos, self.cliques, self.sem_botoes = [], [], []
+        self.textos, self.cliques, self.sem_botoes, self.imagens = [], [], [], []
+
+    def enviar_imagens(self, chat_id, caminhos):
+        self.imagens.append([c.name for c in caminhos])
 
     def atualizacoes(self, offset):
         return [a for a in self._atualizacoes if a["update_id"] >= offset]
@@ -99,11 +109,94 @@ def test_ignora_quem_nao_e_voce():
     assert lidos == 2 and fila.buscar(1).estado == PENDENTE and bot.textos == []
 
 
+@pytest.fixture
+def artes_tmp(tmp_path, monkeypatch):
+    monkeypatch.setattr(aprovacao, "PASTA_ARTES", tmp_path)
+    return tmp_path
+
+
+def test_fila_lista_esperando_e_publicados():
+    fila = _fila()
+    fila.novo("aviso", "Votação amanhã", None, "Votação amanhã\n\n#Pará").estado = AGUARDANDO_LEGENDA
+    fila.publicado(fila.novo("apresentacao", "post1", None, "Olá, Pará! 🦉\n\nTexto"), "https://www.instagram.com/p/x/")
+    bot = BotFalso([_texto(10, "/fila")])
+    _processar(bot, fila)
+    texto = bot.textos[-1]["texto"]
+    assert "⏳ <b>#1</b> · Legenda original <i>(esperando aprovação)</i>" in texto
+    assert "✏️ <b>#2</b> · Votação amanhã <i>(esperando a nova legenda)</i>" in texto
+    assert "✅ #3 · Olá, Pará! 🦉\nhttps://www.instagram.com/p/x/" in texto
+
+
+def test_aviso_cria_post_com_arte_e_legenda(artes_tmp):
+    fila = Fila()
+    bot = BotFalso([_texto(10, "/aviso Votação importante amanhã\nA Câmara vota o novo MEI às 14h.")])
+    _processar(bot, fila)
+    post = fila.buscar(1)
+    assert post.origem == "aviso" and post.referencia.startswith("Votação importante amanhã\nA Câmara")
+    assert post.legenda.endswith("#Pará #NossoVotoPará")
+    assert bot.imagens == [["aviso1_1.png"]] and (artes_tmp / "comandos" / "aviso1_1.png").exists()
+    assert "Post #1 para o Instagram" in bot.textos[-1]["texto"] and bot.textos[-1]["botoes"]
+    assert len(aprovacao.imagens_do_post(post)) == 1
+
+
+def test_aviso_vazio_ou_longo_demais_e_recusado(artes_tmp):
+    fila = Fila()
+    bot = BotFalso([_texto(10, "/aviso"), _texto(11, "/aviso " + "x" * 600)])
+    _processar(bot, fila)
+    assert fila.posts == []
+    assert "Escreva o aviso" in bot.textos[0]["texto"] and "600 caracteres" in bot.textos[1]["texto"]
+
+
+def _coleta_com_pl():
+    pl = Proposicao("senado", 50, "PL 5540/2026", "PL", "Institui a política.", "2026-10-13", [1], "https://p")
+    coleta = Coleta(Path("2026-10-10_a_2026-10-17"), date(2026, 10, 10), date(2026, 10, 17), [],
+                    [Parlamentar("senado", 1, "Jader Barbalho", "MDB", "PA")], [pl], [], None)
+    return coleta, pl
+
+
+def test_post_encontrado_vira_cartao_e_publicado_devolve_o_link(artes_tmp, monkeypatch):
+    monkeypatch.setattr(aprovacao, "buscar", lambda base, pedido: _coleta_com_pl())
+    fila = Fila()
+    bot = BotFalso([_texto(10, "/post PL 5540/2026")])
+    _processar(bot, fila)
+    post = fila.buscar(1)
+    assert (post.origem, post.referencia, post.periodo) == ("coleta", "proposicao:senado:50", "2026-10-10_a_2026-10-17")
+    assert post.legenda.startswith("📄 Nova proposta no Senado: PL 5540/2026, de Sen. Jader Barbalho (MDB)")
+    assert bot.imagens == [["proposicao_senado_50_1.png"]]
+
+    fila.publicado(post, "https://www.instagram.com/p/pl/")
+    bot._atualizacoes = [_texto(11, "/post@NossoVotoParaBot PL 5540/2026")]
+    _processar(bot, fila)
+    assert len(fila.posts) == 1 and "já foi publicado (#1)" in bot.textos[-1]["texto"]
+
+
+def test_post_nao_encontrado_ou_sem_numero(monkeypatch):
+    monkeypatch.setattr(aprovacao, "buscar", lambda base, pedido: None)
+    bot = BotFalso([_texto(10, "/post PL 1/2026"), _texto(11, "/post")])
+    _processar(bot, Fila())
+    assert "Não encontrei <b>PL 1/2026</b>" in bot.textos[0]["texto"]
+    assert "Diga qual projeto" in bot.textos[1]["texto"]
+
+
+def test_comando_desconhecido_mostra_ajuda_e_erro_vira_aviso(monkeypatch):
+    def quebra(base, pedido):
+        raise OSError("disco cheio")
+
+    monkeypatch.setattr(aprovacao, "buscar", quebra)
+    fila = _fila()
+    fila.buscar(1).estado = AGUARDANDO_LEGENDA  # comando não vira legenda, mesmo com post esperando
+    bot = BotFalso([_texto(10, "/start"), _texto(11, "/post PL 1/2026")])
+    _processar(bot, fila)
+    assert bot.textos[0]["texto"] == aprovacao.AJUDA
+    assert "Não consegui atender /post: disco cheio" in bot.textos[1]["texto"]
+    assert fila.buscar(1).legenda == "Legenda original"
+
+
 def test_texto_sem_post_esperando_recebe_ajuda_e_legenda_longa_e_recusada():
     fila = _fila()
     bot = BotFalso([_texto(10, "oi")])
     _processar(bot, fila)
-    assert "Editar legenda" in bot.textos[-1]["texto"]
+    assert "Editar legenda" in bot.textos[-1]["texto"] and "/ajuda" in bot.textos[-1]["texto"]
 
     fila.buscar(1).estado = AGUARDANDO_LEGENDA
     bot._atualizacoes = [_texto(11, "x" * 2300)]

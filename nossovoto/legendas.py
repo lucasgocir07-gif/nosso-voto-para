@@ -77,6 +77,15 @@ def legenda_proposicao(p: Proposicao, analise: Analise | None, por_id: dict[tupl
     return _montar(cabecalho, resumo, meio, rodape)
 
 
+def legenda_aviso(texto: str) -> str:
+    """Legenda do comando /aviso: o próprio texto, com as hashtags do projeto."""
+    tags = "#Pará #NossoVotoPará"
+    corpo = texto.strip()
+    if len(corpo) + len(tags) + 2 > LIMITE:
+        corpo = corpo[:LIMITE - len(tags) - 5].rstrip() + "..."
+    return f"{corpo}\n\n{tags}"
+
+
 def legenda(item: Proposicao | Votacao, analise: Analise | None, por_id: dict[tuple[str, int], Parlamentar]) -> str:
     if isinstance(item, Votacao):
         return legenda_votacao(item, analise, por_id)

@@ -79,6 +79,11 @@ def test_letra_padrao_tem_todos_os_acentos_e_seta_vem_da_montserrat():
     assert _desenho_do_caractere(seta, "→") != _desenho_do_caractere(seta, "")
 
 
+def test_arte_de_aviso_com_e_sem_titulo():
+    assert artes.arte_aviso("Só uma frase curta.").size == (1080, 1350)
+    assert artes.arte_aviso("Título do aviso\nCorpo do aviso, com mais detalhes.\nE mais uma linha.").size == (1080, 1350)
+
+
 def test_rotulo_voto_traduz_siglas_do_senado():
     assert artes.rotulo_voto("senado", "LS") == "Licença saúde"
     assert artes.rotulo_voto("camara", "Obstrução") == "Obstrução"

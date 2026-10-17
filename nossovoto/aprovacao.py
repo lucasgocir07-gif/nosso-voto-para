@@ -1,10 +1,12 @@
 """Aprovação dos posts pelo Telegram e publicação no Instagram.
 
 Uso:
-    python -m nossovoto.aprovacao                    # lê os botões apertados no Telegram e faz o que foi pedido
-    python -m nossovoto.aprovacao --apresentacao 1   # manda o post de apresentação 1 (2 ou 3) para aprovação
+    python -m nossovoto.aprovacao                        # lê botões e comandos do Telegram e faz o que foi pedido
+    python -m nossovoto.aprovacao --apresentacao 1       # manda o post de apresentação 1 (2 ou 3) para aprovação
+    python -m nossovoto.aprovacao --configurar-comandos  # registra o menu de comandos no Telegram (uma vez só)
 
 Cada post chega ao Telegram com a arte, a legenda e os botões Postar / Editar legenda / Descartar.
+No Telegram também dá para pedir posts: /post PL 1234/2026, /aviso <texto>, /fila e /ajuda.
 Só os cliques e mensagens da conversa em TELEGRAM_CHAT_ID são obedecidos.
 """
 
@@ -21,15 +23,35 @@ from PIL import Image
 from . import apresentacao, artes
 from .ambiente import carregar_env
 from .armazenamento import achar_pasta, carregar
+from .busca import buscar
 from .config import PASTA_ARTES, PASTA_DADOS
 from .fila import AGUARDANDO_LEGENDA, DESCARTADO, PENDENTE, PUBLICADO, Fila, Post, carregar_fila, salvar_fila
 from .hospedagem import hospedar
 from .instagram import ErroInstagram, Instagram
-from .legendas import LIMITE
+from .legendas import LIMITE, legenda, legenda_aviso
 from .modelos import chave
 from .telegram import ErroTelegram, Telegram
 
 log = logging.getLogger("nossovoto")
+
+LIMITE_AVISO = 500  # acima disso o texto fica pequeno demais na arte
+
+AJUDA = (
+    "🦉 <b>Comandos do Nosso Voto Pará</b>\n\n"
+    "<b>/post PL 1234/2026</b>: cartão de um projeto ou votação da bancada, para aprovar. "
+    "Junte <i>câmara</i> ou <i>senado</i> para escolher a Casa.\n\n"
+    "<b>/aviso Seu texto</b>: cartão com uma arte de aviso. Com mais de uma linha, a primeira vira o título.\n\n"
+    "<b>/fila</b>: posts esperando aprovação e os últimos publicados.\n\n"
+    "<i>O robô confere o Telegram a cada 10 minutos: a resposta pode levar até uns 10 minutos.</i>"
+)
+
+# Menu que aparece ao digitar "/" no Telegram
+COMANDOS_MENU = [
+    ("post", "Cartão de um projeto ou votação. Ex.: /post PL 1234/2026"),
+    ("aviso", "Cartão com uma arte de aviso. Ex.: /aviso Seu texto"),
+    ("fila", "Posts esperando aprovação e últimos publicados"),
+    ("ajuda", "Como usar os comandos"),
+]
 
 
 def botoes(post: Post) -> list[list[tuple[str, str]]]:
@@ -48,8 +70,20 @@ def enviar_cartao(bot: Telegram, chat_id: str, post: Post, imagens: list[Path]) 
     post.id_mensagem = bot.enviar(chat_id, texto_cartao(post), botoes=botoes(post))["message_id"]
 
 
+def _salvar_pngs(imagens: list[Image.Image], nome_base: str) -> list[Path]:
+    destino = PASTA_ARTES / "comandos"
+    destino.mkdir(parents=True, exist_ok=True)
+    caminhos = []
+    for i, imagem in enumerate(imagens, start=1):
+        caminhos.append(destino / f"{nome_base}_{i}.png")
+        imagem.save(caminhos[-1], optimize=True)
+    return caminhos
+
+
 def imagens_do_post(post: Post) -> list[Image.Image]:
     """Refaz as imagens a partir dos dados guardados (as artes em PNG não vão para o repositório)."""
+    if post.origem == "aviso":
+        return [artes.arte_aviso(post.referencia)]
     if post.origem == "apresentacao":
         pasta = achar_pasta(PASTA_DADOS / "processado")
         parlamentares = carregar(pasta).parlamentares if pasta else []
@@ -110,17 +144,94 @@ def _clique(bot: Telegram, chat_id: str, fila: Fila, clique: dict, publicar: Cal
         bot.responder_clique(clique["id"], "Botão desconhecido.")
 
 
+def _titulo(post: Post) -> str:
+    primeira = post.legenda.splitlines()[0] if post.legenda else post.referencia
+    return primeira if len(primeira) <= 80 else primeira[:77].rstrip() + "..."
+
+
+def texto_fila(fila: Fila) -> str:
+    esperando = [p for p in fila.posts if p.estado in (PENDENTE, AGUARDANDO_LEGENDA)]
+    publicados = [p for p in fila.posts if p.estado == PUBLICADO][-3:]
+    linhas = ["📋 <b>Fila de posts</b>", ""]
+    for p in esperando:
+        if p.estado == AGUARDANDO_LEGENDA:
+            linhas.append(f"✏️ <b>#{p.id}</b> · {escape(_titulo(p))} <i>(esperando a nova legenda)</i>")
+        else:
+            linhas.append(f"⏳ <b>#{p.id}</b> · {escape(_titulo(p))} <i>(esperando aprovação)</i>")
+    if not esperando:
+        linhas.append("Nenhum post esperando aprovação.")
+    if publicados:
+        linhas += ["", "<b>Últimos publicados:</b>"]
+        linhas += [f"✅ #{p.id} · {escape(_titulo(p))}\n{escape(p.permalink or '')}" for p in reversed(publicados)]
+    return "\n".join(linhas)
+
+
+def _comando_aviso(bot: Telegram, chat_id: str, fila: Fila, texto: str) -> None:
+    if not texto:
+        bot.enviar(chat_id, "Escreva o aviso depois do comando. Ex.: <b>/aviso Amanhã tem votação importante na Câmara</b>")
+        return
+    if len(texto) > LIMITE_AVISO:
+        bot.enviar(chat_id, f"O aviso tem {len(texto)} caracteres. Para caber bem na arte, use até {LIMITE_AVISO}.")
+        return
+    post = fila.novo("aviso", texto, None, legenda_aviso(texto))
+    enviar_cartao(bot, chat_id, post, _salvar_pngs([artes.arte_aviso(texto)], f"aviso{post.id}"))
+
+
+def _comando_post(bot: Telegram, chat_id: str, fila: Fila, pedido: str) -> None:
+    if not pedido:
+        bot.enviar(chat_id, "Diga qual projeto ou votação. Ex.: <b>/post PL 1234/2026</b> ou <b>/post PEC 221/2019 senado</b>")
+        return
+    achado = buscar(PASTA_DADOS / "processado", pedido)
+    if achado is None:
+        bot.enviar(chat_id, f"Não encontrei <b>{escape(pedido)}</b> entre os projetos e votações da bancada já coletados. "
+                            "Confira o número, ou peça esse post no chat com o Claude.")
+        return
+    coleta, item = achado
+    existente = next((p for p in fila.posts
+                      if p.origem == "coleta" and p.referencia == chave(item) and p.estado != DESCARTADO), None)
+    if existente and existente.estado == PUBLICADO:
+        bot.enviar(chat_id, f"Esse post já foi publicado (#{existente.id}):\n{escape(existente.permalink or '')}")
+        return
+    if existente is None:
+        analise = (coleta.analises or {}).get(chave(item))
+        por_id = {(p.casa, p.id): p for p in coleta.parlamentares}
+        existente = fila.novo("coleta", chave(item), coleta.pasta.name, legenda(item, analise, por_id))
+    enviar_cartao(bot, chat_id, existente, _salvar_pngs(artes.imagens_do_item(coleta, item), artes.nome_arquivo(item)))
+
+
+def _comando(bot: Telegram, chat_id: str, fila: Fila, texto: str) -> None:
+    partes = texto.split(maxsplit=1)
+    comando = partes[0].split("@")[0].lower()  # "/post@NossoVotoParaBot" também vale
+    argumento = partes[1].strip() if len(partes) > 1 else ""
+    try:
+        if comando == "/fila":
+            bot.enviar(chat_id, texto_fila(fila))
+        elif comando == "/aviso":
+            _comando_aviso(bot, chat_id, fila, argumento)
+        elif comando == "/post":
+            _comando_post(bot, chat_id, fila, argumento)
+        else:  # /ajuda, /start ou algo desconhecido
+            bot.enviar(chat_id, AJUDA)
+    except ErroTelegram:
+        raise
+    except Exception as erro:  # o pedido falhou, mas o robô continua atendendo os outros
+        log.exception("Falha no comando %s", comando)
+        bot.enviar(chat_id, f"⚠️ Não consegui atender {escape(comando)}: {escape(str(erro)[:200])}")
+
+
 def _texto(bot: Telegram, chat_id: str, fila: Fila, mensagem: dict) -> None:
-    """Uma mensagem de texto vira a nova legenda do post que está esperando uma."""
+    """Comandos (/post, /aviso, /fila, /ajuda) ou a nova legenda do post que está esperando uma."""
     texto = (mensagem.get("text") or "").strip()
+    if texto.startswith("/"):
+        _comando(bot, chat_id, fila, texto)
+        return
     respondida = (mensagem.get("reply_to_message") or {}).get("message_id")
     esperando = [p for p in fila.posts if p.estado == AGUARDANDO_LEGENDA]
     alvo = next((p for p in esperando if respondida and p.id_pedido_legenda == respondida), None)
     if alvo is None and len(esperando) == 1:
         alvo = esperando[0]
     if alvo is None or not texto:
-        if not texto.startswith("/"):
-            bot.enviar(chat_id, "Para trocar uma legenda, toque em ✏️ Editar legenda no post.")
+        bot.enviar(chat_id, "Para trocar uma legenda, toque em ✏️ Editar legenda no post. Para ver os comandos, mande /ajuda.")
         return
     if len(texto) > LIMITE:
         bot.enviar(chat_id, f"Essa legenda tem {len(texto)} caracteres; o Instagram aceita até {LIMITE}. Mande uma mais curta.")
@@ -153,19 +264,14 @@ def _mandar_apresentacao(bot: Telegram, chat_id: str, fila: Fila, numero: int) -
     referencia = f"post{numero}"
     pasta = achar_pasta(PASTA_DADOS / "processado")
     imagens = apresentacao.imagens_do_post(referencia, carregar(pasta).parlamentares if pasta else [])
-    destino = PASTA_ARTES / "apresentacao"
-    destino.mkdir(parents=True, exist_ok=True)
-    caminhos = []
-    for nome, imagem in zip(apresentacao.NOMES_ARQUIVOS[referencia], imagens):
-        caminhos.append(destino / nome)
-        imagem.save(caminhos[-1], optimize=True)
     post = fila.novo("apresentacao", referencia, None, apresentacao.LEGENDAS[referencia])
-    enviar_cartao(bot, chat_id, post, caminhos)
+    enviar_cartao(bot, chat_id, post, _salvar_pngs(imagens, referencia))
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Aprovação dos posts pelo Telegram e publicação no Instagram.")
     parser.add_argument("--apresentacao", type=int, choices=(1, 2, 3), help="manda um post de apresentação para aprovação")
+    parser.add_argument("--configurar-comandos", action="store_true", help="registra o menu de comandos no Telegram")
     args = parser.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s", datefmt="%H:%M:%S")
     carregar_env()
@@ -173,7 +279,12 @@ def main(argv: list[str] | None = None) -> int:
     if not token or not chat_id:
         log.error("Configure TELEGRAM_BOT_TOKEN e TELEGRAM_CHAT_ID no .env (veja .env.example)")
         return 1
-    bot, fila = Telegram(token), carregar_fila()
+    bot = Telegram(token)
+    if args.configurar_comandos:  # não mexe na fila nem lê mensagens
+        bot.definir_comandos(COMANDOS_MENU)
+        log.info("Menu de comandos registrado no Telegram: %s", ", ".join(f"/{c}" for c, _ in COMANDOS_MENU))
+        return 0
+    fila = carregar_fila()
     try:
         if args.apresentacao:
             _mandar_apresentacao(bot, chat_id, fila, args.apresentacao)

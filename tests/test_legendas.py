@@ -26,6 +26,11 @@ def test_sem_resumo_da_ia_usa_texto_oficial_e_nao_leva_aviso():
     assert legendas.AVISO_IA not in texto
 
 
+def test_legenda_de_aviso():
+    assert legendas.legenda_aviso("  Votação amanhã!  ") == "Votação amanhã!\n\n#Pará #NossoVotoPará"
+    assert len(legendas.legenda_aviso("x" * 3000)) <= legendas.LIMITE
+
+
 def test_resumo_enorme_e_encurtado_para_caber_no_instagram():
     v = Votacao("senado", "7", "2026-10-14", "x", "https://v", votos=[Voto(1, "Beto Faro", "PT", "Sim")])
     texto = legendas.legenda(v, Analise(resumo="palavra " * 600), POR_ID)

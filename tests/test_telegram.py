@@ -84,6 +84,17 @@ def test_imagens_vao_como_foto_ou_album(monkeypatch, tmp_path):
     assert '"media": "attach://f1"' in envios[1][1]["media"]
 
 
+def test_menu_de_comandos(monkeypatch):
+    bot = telegram.Telegram(TOKEN)
+    chamadas = []
+    monkeypatch.setattr(bot.sessao, "post", lambda url, json, timeout: chamadas.append((url, json)) or Resposta(200, {"ok": True, "result": True}))
+    bot.definir_comandos([("post", "Cartão de um projeto"), ("fila", "Posts esperando")])
+    url, corpo = chamadas[0]
+    assert url.endswith("/setMyCommands")
+    assert corpo == {"commands": [{"command": "post", "description": "Cartão de um projeto"},
+                                  {"command": "fila", "description": "Posts esperando"}]}
+
+
 def test_clique_antigo_demais_nao_trava_o_robo(monkeypatch):
     bot = telegram.Telegram(TOKEN)
     resposta = {"ok": False, "description": "Bad Request: query is too old and response timeout expired"}

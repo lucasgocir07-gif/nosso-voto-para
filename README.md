@@ -70,6 +70,17 @@ Votações de mérito e projetos de lei chegam como **cartão para aprovação**
 .venv/Scripts/python -m nossovoto.instagram --verificar       # confere a conexão com o Instagram (não publica)
 ```
 
+**Comandos no Telegram:** a rotina de aprovação lê a conversa a cada 10 minutos.
+
+| Comando | O que faz |
+|---|---|
+| `/post PL 1234/2026` | Cartão de um projeto ou votação da bancada já coletado. Aceita `câmara` ou `senado` para escolher a Casa |
+| `/aviso Seu texto` | Cartão com uma arte de aviso. Com mais de uma linha, a primeira vira o título |
+| `/fila` | Posts esperando aprovação e os últimos publicados |
+| `/ajuda` | Lista os comandos |
+
+O menu que aparece ao digitar "/" é registrado com `python -m nossovoto.aprovacao --configurar-comandos`.
+
 Ao apertar **Postar**, a arte é convertida para JPEG e enviada ao GitHub (pasta `publicar/`), onde ganha um endereço público. Depois é publicada pela API oficial do Instagram, e o robô devolve o link do post. O robô só obedece à conversa de `TELEGRAM_CHAT_ID`. A fila de posts fica em `dados/fila_instagram.json`.
 
 Configuração (uma vez só), no `.env`:

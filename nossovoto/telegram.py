@@ -105,6 +105,10 @@ class Telegram:
         except ErroTelegram as erro:  # ex.: mensagem antiga demais; não impede o resto
             log.warning("Não deu para remover os botões: %s", erro)
 
+    def definir_comandos(self, comandos: list[tuple[str, str]]) -> None:
+        """Menu que aparece ao digitar "/" na conversa com o robô."""
+        self._chamar("setMyCommands", {"commands": [{"command": c, "description": d} for c, d in comandos]})
+
     def atualizacoes(self, offset: int) -> list[dict]:
         """Cliques e mensagens recebidos depois do offset (cada um vem uma vez só)."""
         return self._chamar("getUpdates", {"offset": offset, "timeout": 0,
