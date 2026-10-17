@@ -15,3 +15,7 @@ PASTA_DADOS = RAIZ / "dados"
 PASTA_RELATORIOS = RAIZ / "relatorios"
 PASTA_ARTES = RAIZ / "artes"
 PASTA_MARCA = RAIZ / "marca"
+PASTA_PUBLICAR = RAIZ / "publicar"  # imagens já aprovadas, servidas pelo GitHub para o Instagram
+
+REPOSITORIO_GITHUB = "lucasgocir07-gif/nosso-voto-para"
+RAMO_GITHUB = "main"

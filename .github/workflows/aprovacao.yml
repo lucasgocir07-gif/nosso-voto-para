@@ -1,0 +1,50 @@
+name: Aprovação dos posts
+
+on:
+  schedule:
+    - cron: "*/10 * * * *" # a cada 10 minutos (o GitHub pode atrasar alguns minutos em horários de pico)
+  workflow_dispatch:
+
+permissions:
+  contents: write # para guardar a fila e as imagens dos posts publicados
+
+concurrency:
+  group: robo-nosso-voto
+  cancel-in-progress: false
+
+jobs:
+  aprovacao:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+      INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+      PYTHONIOENCODING: utf-8
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+      - name: Identidade do robô no Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Ler os botões do Telegram e publicar o que foi aprovado
+        run: python -m nossovoto.aprovacao
+
+      - name: Guardar a fila no repositório
+        if: always()
+        run: |
+          bash .github/scripts/salvar_dados.sh "Aprovação: fila de posts atualizada"
+      - name: Avisar no Telegram se algo falhou
+        if: failure()
+        run: |
+          curl -sS -o /dev/null -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
+            --data-urlencode text="⚠️ A aprovação de posts falhou. Detalhes: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"

@@ -11,6 +11,8 @@ import argparse
 import logging
 import os
 import sys
+import time
+from pathlib import Path
 
 import requests
 
@@ -33,10 +35,12 @@ class Instagram:
         # O token vai no cabeçalho, nunca na URL: assim ele não aparece em erros nem em registros
         self.sessao.headers.update({"Authorization": f"Bearer {token}"})
 
-    def chamar(self, metodo: str, caminho: str, params: dict | None = None, versao: bool = True) -> dict:
+    def chamar(self, metodo: str, caminho: str, params: dict | None = None, versao: bool = True,
+               dados: dict | None = None) -> dict:
+        """dados vão no corpo do POST (a legenda pode ser longa demais para a URL)."""
         url = f"{API}/{VERSAO}/{caminho}" if versao else f"{API}/{caminho}"
         try:
-            resp = self.sessao.request(metodo, url, params=params, timeout=self.timeout)
+            resp = self.sessao.request(metodo, url, params=params, data=dados, timeout=self.timeout)
         except requests.RequestException:
             raise ErroInstagram(f"sem conexão com o Instagram ({caminho})") from None
         try:
@@ -57,6 +61,41 @@ class Instagram:
         """Renova o token de 60 dias (precisa ter mais de 24 h). Devolve {'access_token', 'expires_in'}."""
         return self.chamar("GET", "refresh_access_token", {"grant_type": "ig_refresh_token"}, versao=False)
 
+    def _aguardar(self, container: str, espera: float = 5, limite: float = 300) -> None:
+        """Espera o Instagram terminar de processar a mídia (status FINISHED)."""
+        inicio = time.monotonic()
+        while True:
+            status = self.chamar("GET", container, {"fields": "status_code"}).get("status_code")
+            if status == "FINISHED":
+                return
+            if status in ("ERROR", "EXPIRED"):
+                raise ErroInstagram(f"o Instagram não conseguiu processar a imagem (status {status})")
+            if time.monotonic() - inicio > limite:
+                raise ErroInstagram("o Instagram demorou demais para processar a imagem")
+            time.sleep(espera)
+
+    def publicar(self, ig_id: str, urls: list[str], legenda: str) -> dict:
+        """Publica uma foto (1 URL) ou um carrossel (2 a 10 URLs). Devolve {'id', 'permalink'}.
+
+        As imagens precisam ser JPEG num endereço público: o Instagram vai buscá-las lá.
+        """
+        if not 1 <= len(urls) <= 10:
+            raise ErroInstagram(f"um post aceita de 1 a 10 imagens, não {len(urls)}")
+        if len(urls) == 1:
+            container = self.chamar("POST", f"{ig_id}/media", dados={"image_url": urls[0], "caption": legenda})["id"]
+        else:
+            filhos = []
+            for url in urls:
+                filho = self.chamar("POST", f"{ig_id}/media", dados={"image_url": url, "is_carousel_item": "true"})["id"]
+                self._aguardar(filho)
+                filhos.append(filho)
+            container = self.chamar("POST", f"{ig_id}/media", dados={
+                "media_type": "CAROUSEL", "children": ",".join(filhos), "caption": legenda})["id"]
+        self._aguardar(container)
+        midia = self.chamar("POST", f"{ig_id}/media_publish", dados={"creation_id": container})["id"]
+        permalink = self.chamar("GET", midia, {"fields": "permalink"}).get("permalink")
+        return {"id": midia, "permalink": permalink}
+
 
 def _verificar() -> int:
     token = os.environ.get("INSTAGRAM_ACCESS_TOKEN")
@@ -72,17 +111,36 @@ def _verificar() -> int:
     return 0
 
 
+def _renovar(saida: Path | None) -> int:
+    """Renova o token por mais 60 dias. O token novo nunca aparece na tela:
+    vai para o arquivo --saida (no GitHub) ou direto para o .env (no computador)."""
+    token = os.environ.get("INSTAGRAM_ACCESS_TOKEN")
+    if not token:
+        log.error("INSTAGRAM_ACCESS_TOKEN não configurado")
+        return 1
+    resposta = Instagram(token).renovar_token()
+    novo, dias = resposta["access_token"], int(resposta.get("expires_in", 0)) // 86400
+    if saida:
+        saida.write_text(novo, encoding="utf-8")
+    else:
+        salvar_no_env("INSTAGRAM_ACCESS_TOKEN", novo)
+    log.info("Token do Instagram renovado: vale por mais %d dias", dias)
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Conexão com o Instagram do Nosso Voto Pará.")
     parser.add_argument("--verificar", action="store_true", help="confere o token e a conta, sem postar nada")
+    parser.add_argument("--renovar", action="store_true", help="renova o token por mais 60 dias")
+    parser.add_argument("--saida", type=Path, help="com --renovar: arquivo onde gravar o token novo (em vez do .env)")
     args = parser.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s", datefmt="%H:%M:%S")
     carregar_env()
-    if not args.verificar:
+    if not (args.verificar or args.renovar):
         parser.print_help()
         return 0
     try:
-        return _verificar()
+        return _renovar(args.saida) if args.renovar else _verificar()
     except ErroInstagram as erro:
         log.error("Falha no Instagram: %s", erro)
         return 1

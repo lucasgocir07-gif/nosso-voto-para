@@ -92,5 +92,6 @@ def test_gerar_artes_so_para_merito_e_projetos(tmp_path):
     coleta = Coleta(Path("."), date(2026, 10, 10), date(2026, 10, 17), [], SENADORES, [pl, req], [merito, procedimento],
                     {"votacao:senado:8": Analise(tipo_votacao="Procedimento")})
     arquivos = artes.gerar_artes(coleta, tmp_path)
-    assert sorted(a.name for a in arquivos) == ["proposicao_senado_50_1.png", "votacao_senado_7_1.png"]
-    assert all(Image.open(a).size == (1080, 1350) for a in arquivos)
+    assert {k: [c.name for c in v] for k, v in arquivos.items()} == {
+        "votacao:senado:7": ["votacao_senado_7_1.png"], "proposicao:senado:50": ["proposicao_senado_50_1.png"]}
+    assert all(Image.open(c).size == (1080, 1350) for caminhos in arquivos.values() for c in caminhos)

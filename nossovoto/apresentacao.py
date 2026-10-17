@@ -166,19 +166,31 @@ def post_compromisso() -> Image.Image:
     return imagem
 
 
+NOMES_ARQUIVOS = {
+    "post1": ["post1_capa.png"],
+    "post2": ["post2_1_o-que-voce-vai-ver.png", "post2_2_a-bancada.png", "post2_3_de-onde-vem.png"],
+    "post3": ["post3_compromisso.png"],
+}
+
+
+def imagens_do_post(post: str, parlamentares: list[Parlamentar]) -> list[Image.Image]:
+    """As imagens de um post de apresentação ("post1", "post2" ou "post3")."""
+    if post == "post1":
+        return [post_capa()]
+    if post == "post2":
+        return [slide_o_que_mostramos(), slide_bancada(parlamentares), slide_de_onde_vem()]
+    if post == "post3":
+        return [post_compromisso()]
+    raise ValueError(f"post de apresentação desconhecido: {post}")
+
+
 def gerar(destino: Path, parlamentares: list[Parlamentar]) -> list[Path]:
     destino.mkdir(parents=True, exist_ok=True)
-    imagens = {
-        "post1_capa.png": post_capa(),
-        "post2_1_o-que-voce-vai-ver.png": slide_o_que_mostramos(),
-        "post2_2_a-bancada.png": slide_bancada(parlamentares),
-        "post2_3_de-onde-vem.png": slide_de_onde_vem(),
-        "post3_compromisso.png": post_compromisso(),
-    }
     arquivos = []
-    for nome, imagem in imagens.items():
-        arquivos.append(destino / nome)
-        imagem.save(arquivos[-1], optimize=True)
+    for post, nomes in NOMES_ARQUIVOS.items():
+        for nome, imagem in zip(nomes, imagens_do_post(post, parlamentares)):
+            arquivos.append(destino / nome)
+            imagem.save(arquivos[-1], optimize=True)
     legendas = "\n\n".join(f"===== {post.upper()} =====\n\n{texto}" for post, texto in LEGENDAS.items())
     (destino / "legendas.txt").write_text(legendas + "\n", encoding="utf-8")
     return arquivos

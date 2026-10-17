@@ -1,0 +1,57 @@
+name: Robô diário
+
+on:
+  schedule:
+    - cron: "0 10 * * *" # 07:00 em Belém (UTC-3)
+  workflow_dispatch: # botão "Run workflow" para rodar na hora
+
+permissions:
+  contents: write # para guardar os dados e as imagens dos posts no repositório
+
+concurrency:
+  group: robo-nosso-voto # um robô por vez: dois mexendo na fila ao mesmo tempo dá conflito
+  cancel-in-progress: false
+
+jobs:
+  robo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+      INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+      PYTHONIOENCODING: utf-8
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+      - name: Identidade do robô no Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Coletar votos e proposições (últimos 7 dias)
+        run: python -m nossovoto.coletar --dias 7
+        continue-on-error: true # se uma Casa estiver fora do ar, segue com a outra; o aviso vai no Telegram
+      - name: Classificar e resumir
+        run: python -m nossovoto.analisar
+        continue-on-error: true # se a IA falhar, segue só com as regras
+      - name: Enviar novidades e cartões de post para o Telegram
+        run: python -m nossovoto.enviar
+
+      - name: Guardar os dados no repositório
+        if: always()
+        run: |
+          bash .github/scripts/salvar_dados.sh "Robô diário: dados de $(date +%F)"
+      - name: Avisar no Telegram se algo falhou
+        if: failure()
+        run: |
+          curl -sS -o /dev/null -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
+            --data-urlencode text="⚠️ O robô diário falhou. Detalhes: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"

@@ -54,6 +54,43 @@ def test_erros_nao_vazam_o_token(monkeypatch):
     assert erro.value.__cause__ is None and erro.value.__suppress_context__
 
 
+def test_botoes_e_pedido_de_resposta(monkeypatch):
+    bot = telegram.Telegram(TOKEN)
+    corpos = []
+    monkeypatch.setattr(bot.sessao, "post", lambda url, json, timeout: corpos.append(json) or Resposta(200, {"ok": True, "result": {"message_id": 5}}))
+    assert bot.enviar("42", "oi", botoes=[[("✅ Postar", "postar:1")]]) == {"message_id": 5}
+    assert corpos[-1]["reply_markup"] == {"inline_keyboard": [[{"text": "✅ Postar", "callback_data": "postar:1"}]]}
+    bot.enviar("42", "mande", pedir_resposta="Nova legenda")
+    assert corpos[-1]["reply_markup"] == {"force_reply": True, "input_field_placeholder": "Nova legenda"}
+
+
+def test_imagens_vao_como_foto_ou_album(monkeypatch, tmp_path):
+    bot = telegram.Telegram(TOKEN)
+    envios = []
+
+    def post(url, data=None, files=None, timeout=None, json=None):
+        envios.append((url.rsplit("/", 1)[-1], data, sorted(files)))
+        return Resposta(200, {"ok": True, "result": []})
+
+    monkeypatch.setattr(bot.sessao, "post", post)
+    imagens = []
+    for i in range(2):
+        imagens.append(tmp_path / f"{i}.png")
+        imagens[-1].write_bytes(b"png")
+    bot.enviar_imagens("42", imagens[:1])
+    bot.enviar_imagens("42", imagens)
+    assert envios[0] == ("sendPhoto", {"chat_id": "42"}, ["photo"])
+    assert envios[1][0] == "sendMediaGroup" and envios[1][2] == ["f0", "f1"]
+    assert '"media": "attach://f1"' in envios[1][1]["media"]
+
+
+def test_clique_antigo_demais_nao_trava_o_robo(monkeypatch):
+    bot = telegram.Telegram(TOKEN)
+    resposta = {"ok": False, "description": "Bad Request: query is too old and response timeout expired"}
+    monkeypatch.setattr(bot.sessao, "post", lambda url, json, timeout: Resposta(400, resposta))
+    bot.responder_clique("q1", "Publicando...")  # não levanta erro
+
+
 def test_conversas_recentes_junta_chats_repetidos(monkeypatch):
     bot = telegram.Telegram(TOKEN)
     updates = [{"message": {"chat": {"id": 7, "type": "private", "first_name": "Lu"}}},

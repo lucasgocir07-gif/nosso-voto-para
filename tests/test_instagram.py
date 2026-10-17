@@ -19,7 +19,7 @@ def test_eu_usa_cabecalho_e_versao(monkeypatch):
     ig = instagram.Instagram(TOKEN)
     chamadas = []
 
-    def request(metodo, url, params, timeout):
+    def request(metodo, url, params, timeout, data=None):
         chamadas.append((metodo, url, params))
         return Resposta(200, {"data": [{"user_id": "178", "username": "nossovotopara", "account_type": "Business"}]})
 
@@ -35,7 +35,7 @@ def test_renovar_token_usa_endpoint_sem_versao(monkeypatch):
     ig = instagram.Instagram(TOKEN)
     urls = []
 
-    def request(metodo, url, params, timeout):
+    def request(metodo, url, params, timeout, data=None):
         urls.append((url, params))
         return Resposta(200, {"access_token": "novo", "expires_in": 5184000})
 
@@ -57,6 +57,17 @@ def test_erros_viram_erro_instagram_sem_vazar_token(monkeypatch):
     with pytest.raises(instagram.ErroInstagram) as erro:
         ig.eu()
     assert TOKEN not in str(erro.value) and erro.value.__suppress_context__
+
+
+def test_renovar_grava_token_novo_no_arquivo_sem_mostrar(monkeypatch, tmp_path, capsys):
+    monkeypatch.setenv("INSTAGRAM_ACCESS_TOKEN", TOKEN)
+    monkeypatch.setattr(instagram, "carregar_env", lambda: None)
+    monkeypatch.setattr(instagram.Instagram, "renovar_token", lambda self: {"access_token": "IGAA-NOVO", "expires_in": 5184000})
+    saida = tmp_path / "token.txt"
+    assert instagram.main(["--renovar", "--saida", str(saida)]) == 0
+    assert saida.read_text(encoding="utf-8") == "IGAA-NOVO"
+    capturado = capsys.readouterr()
+    assert "IGAA-NOVO" not in capturado.out + capturado.err
 
 
 def test_verificar_grava_o_id_da_conta(monkeypatch, tmp_path):

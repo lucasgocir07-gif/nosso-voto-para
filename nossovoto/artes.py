@@ -193,7 +193,7 @@ def rotulo_voto(casa: str, voto: str) -> str:
     return descricao[0].upper() + descricao[1:] if descricao else voto
 
 
-def _grupos(v: Votacao, por_id: dict[tuple[str, int], Parlamentar]) -> list[tuple[str, list[tuple[str, Parlamentar | None]]]]:
+def agrupar_votos(v: Votacao, por_id: dict[tuple[str, int], Parlamentar]) -> list[tuple[str, list[tuple[str, Parlamentar | None]]]]:
     """Votos da bancada agrupados (maior grupo primeiro), com "Sem voto registrado" por último.
 
     Cada grupo traz (rótulo, [(nome com partido, parlamentar)]).
@@ -209,7 +209,7 @@ def _grupos(v: Votacao, por_id: dict[tuple[str, int], Parlamentar]) -> list[tupl
 
 
 def arte_votacao(v: Votacao, analise: Analise | None, por_id: dict[tuple[str, int], Parlamentar]) -> list[Image.Image]:
-    grupos = _grupos(v, por_id)
+    grupos = agrupar_votos(v, por_id)
     total = sum(len(nomes) for _, nomes in grupos)
     nomes_no_primeiro = total <= 3  # no Senado, os 3 nomes cabem no primeiro slide
     rodape = f"Fonte e fotos: {CASA_EXTENSO[v.casa]} (dados abertos)"
@@ -313,23 +313,32 @@ def nome_arquivo(item: Proposicao | Votacao) -> str:
     return re.sub(r"[^A-Za-z0-9_-]+", "_", chave(item))
 
 
-def gerar_artes(coleta, destino: Path) -> list[Path]:
-    """Gera as artes das votações de mérito e dos projetos de lei da coleta. Devolve os arquivos criados."""
+def itens_com_arte(coleta) -> list[Proposicao | Votacao]:
+    """O que vira post: votações de mérito e projetos que mudam a lei."""
     analises = coleta.analises or {}
+    votacoes = [v for v in coleta.votacoes
+                if (analises.get(chave(v)) or Analise()).tipo_votacao != PROCEDIMENTO]
+    return votacoes + [p for p in coleta.proposicoes if eh_principal(p)]
+
+
+def imagens_do_item(coleta, item: Proposicao | Votacao) -> list[Image.Image]:
+    analise = (coleta.analises or {}).get(chave(item))
     por_id = {(p.casa, p.id): p for p in coleta.parlamentares}
+    if isinstance(item, Votacao):
+        return arte_votacao(item, analise, por_id)
+    return [arte_proposicao(item, analise, por_id)]
+
+
+def gerar_artes(coleta, destino: Path) -> dict[str, list[Path]]:
+    """Gera as artes da coleta. Devolve, para cada item (pela chave), os arquivos criados."""
     destino.mkdir(parents=True, exist_ok=True)
-    arquivos = []
-    for v in coleta.votacoes:
-        analise = analises.get(chave(v))
-        if analise and analise.tipo_votacao == PROCEDIMENTO:
-            continue
-        for i, imagem in enumerate(arte_votacao(v, analise, por_id), start=1):
-            arquivos.append(destino / f"{nome_arquivo(v)}_{i}.png")
-            imagem.save(arquivos[-1], optimize=True)
-    for p in coleta.proposicoes:
-        if eh_principal(p):
-            arquivos.append(destino / f"{nome_arquivo(p)}_1.png")
-            arte_proposicao(p, analises.get(chave(p)), por_id).save(arquivos[-1], optimize=True)
+    arquivos: dict[str, list[Path]] = {}
+    for item in itens_com_arte(coleta):
+        caminhos = []
+        for i, imagem in enumerate(imagens_do_item(coleta, item), start=1):
+            caminhos.append(destino / f"{nome_arquivo(item)}_{i}.png")
+            imagem.save(caminhos[-1], optimize=True)
+        arquivos[chave(item)] = caminhos
     return arquivos
 
 
@@ -347,7 +356,8 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     destino = args.destino or PASTA_ARTES / pasta.name
     arquivos = gerar_artes(carregar(pasta), destino)
-    log.info("%d artes geradas em %s (fonte %s)", len(arquivos), destino, args.fonte)
+    total = sum(len(caminhos) for caminhos in arquivos.values())
+    log.info("%d artes de %d posts geradas em %s (fonte %s)", total, len(arquivos), destino, args.fonte)
     return 0
 
 

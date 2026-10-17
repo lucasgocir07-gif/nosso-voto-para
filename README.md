@@ -60,11 +60,42 @@ O slide da bancada usa a coleta mais recente. Gere de novo quando a bancada muda
 
 Cada votação nominal e cada projeto de lei viram uma mensagem pronta para revisar. Votações de procedimento e outros documentos (requerimentos, pareceres) chegam agrupados. O que já foi enviado fica registrado em `dados/telegram_enviados.json` e não se repete; `--reenviar` força o envio de novo.
 
+Votações de mérito e projetos de lei chegam como **cartão para aprovação**: a arte, a legenda pronta para o Instagram e os botões **✅ Postar**, **✏️ Editar legenda** e **🗑️ Descartar**. `--so-posts` manda só os cartões.
+
+## Aprovar e postar no Instagram
+
+```bash
+.venv/Scripts/python -m nossovoto.aprovacao                   # lê os botões apertados e faz o que foi pedido
+.venv/Scripts/python -m nossovoto.aprovacao --apresentacao 1  # manda um post de apresentação (1, 2 ou 3)
+.venv/Scripts/python -m nossovoto.instagram --verificar       # confere a conexão com o Instagram (não publica)
+```
+
+Ao apertar **Postar**, a arte é convertida para JPEG e enviada ao GitHub (pasta `publicar/`), onde ganha um endereço público. Depois é publicada pela API oficial do Instagram, e o robô devolve o link do post. O robô só obedece à conversa de `TELEGRAM_CHAT_ID`. A fila de posts fica em `dados/fila_instagram.json`.
+
 Configuração (uma vez só), no `.env`:
 
 1. Crie um robô com o [@BotFather](https://t.me/BotFather) e cole o token em `TELEGRAM_BOT_TOKEN`.
 2. Mande um "oi" para o seu robô no Telegram.
 3. Rode `.venv/Scripts/python -m nossovoto.enviar --descobrir-chat`: ele grava o `TELEGRAM_CHAT_ID` no `.env`.
+
+## Robô automático (GitHub Actions)
+
+Três rotinas em `.github/workflows/` rodam sozinhas no GitHub:
+
+| Rotina | Quando | O que faz |
+|---|---|---|
+| **Robô diário** | Todo dia, às 7h de Belém | Coleta, analisa e manda as novidades e os cartões de post ao Telegram |
+| **Aprovação dos posts** | A cada 10 minutos | Lê os botões apertados no Telegram e publica o que foi aprovado |
+| **Renovar token do Instagram** | Segundas, às 9h | Renova o token do Instagram, que vence em 60 dias |
+
+Os dados (coletas, análises, fila de posts) são guardados de volta no repositório a cada rodada. Se algo falhar, chega um aviso no Telegram com o link do erro. Todas as rotinas também podem ser rodadas na hora, pelo botão **Run workflow** na aba **Actions**.
+
+**Segredos** (Settings → Secrets and variables → Actions → New repository secret):
+
+- `GEMINI_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `INSTAGRAM_ACCESS_TOKEN`, `INSTAGRAM_USER_ID`: os mesmos valores do `.env`.
+- `GH_PAT`: token do GitHub com permissão **Secrets: Read and write** só neste repositório. Ele permite que a renovação guarde o token novo do Instagram.
+
+> ⚠️ Com o robô rodando no GitHub, **não rode os comandos no computador ao mesmo tempo**: os dois mexeriam na mesma fila. Para rodar algo localmente, faça `git pull` antes.
 
 ## Testes
 
