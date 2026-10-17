@@ -21,19 +21,33 @@ jobs:
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       PYTHONIOENCODING: utf-8
     steps:
+      - name: Conferir se os segredos já foram cadastrados
+        id: segredos
+        run: |
+          if [ -z "$TELEGRAM_BOT_TOKEN" ] || [ -z "$TELEGRAM_CHAT_ID" ]; then
+            echo "::notice::Segredos ainda não cadastrados: nada a fazer por enquanto (veja o README)."
+            echo "prontos=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "prontos=true" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/checkout@v5
+        if: steps.segredos.outputs.prontos == 'true'
       - uses: actions/setup-python@v6
+        if: steps.segredos.outputs.prontos == 'true'
         with:
           python-version: "3.12"
           cache: pip
       - name: Instalar dependências
+        if: steps.segredos.outputs.prontos == 'true'
         run: pip install -r requirements.txt
 
       - name: Renovar o token (o novo vai para um arquivo temporário, nunca para a tela)
+        if: steps.segredos.outputs.prontos == 'true'
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
         run: python -m nossovoto.instagram --renovar --saida "$RUNNER_TEMP/token_instagram"
       - name: Guardar o token novo nos segredos do repositório
+        if: steps.segredos.outputs.prontos == 'true'
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
@@ -43,11 +57,11 @@ jobs:
           fi
           gh secret set INSTAGRAM_ACCESS_TOKEN --repo "$GITHUB_REPOSITORY" < "$RUNNER_TEMP/token_instagram"
       - name: Apagar o arquivo temporário
-        if: always()
+        if: always() && steps.segredos.outputs.prontos == 'true'
         run: rm -f "$RUNNER_TEMP/token_instagram"
 
       - name: Avisar no Telegram se algo falhou
-        if: failure()
+        if: failure() && steps.segredos.outputs.prontos == 'true'
         run: |
           curl -sS -o /dev/null -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
             -d chat_id="${TELEGRAM_CHAT_ID}" \
