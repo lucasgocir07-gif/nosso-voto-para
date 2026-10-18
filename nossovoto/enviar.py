@@ -19,7 +19,7 @@ from pathlib import Path
 
 from . import artes
 from .ambiente import carregar_env, salvar_no_env
-from .aprovacao import enviar_cartao
+from .cartoes import enviar_cartao
 from .armazenamento import Coleta, achar_pasta, carregar
 from .config import PASTA_ARTES, PASTA_DADOS
 from .fila import carregar_fila, salvar_fila

@@ -60,6 +60,9 @@ jobs:
       - name: Enviar novidades e cartões de post para o Telegram
         if: steps.segredos.outputs.prontos == 'true'
         run: python -m nossovoto.enviar
+      - name: Resumos do mês (presença a partir do dia 10, gastos a partir do dia 15)
+        if: steps.segredos.outputs.prontos == 'true'
+        run: python -m nossovoto.mensal
 
       - name: Guardar os dados no repositório
         if: always() && steps.segredos.outputs.prontos == 'true'

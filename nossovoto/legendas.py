@@ -1,7 +1,10 @@
 """Legendas prontas para o Instagram (até 2.200 caracteres e 30 hashtags)."""
 
+from . import meses
 from .artes import agrupar_votos
+from .gastos import ResumoGastos
 from .modelos import Analise, Parlamentar, Proposicao, Votacao
+from .presenca import ResumoPresenca, texto_dias, texto_votacoes
 from .relatorio import formatar_data
 
 LIMITE = 2200
@@ -84,6 +87,89 @@ def legenda_aviso(texto: str) -> str:
     if len(corpo) + len(tags) + 2 > LIMITE:
         corpo = corpo[:LIMITE - len(tags) - 5].rstrip() + "..."
     return f"{corpo}\n\n{tags}"
+
+
+FONTES_GASTOS = ["https://www.camara.leg.br/transparencia/gastos-parlamentares",
+                 "https://www25.senado.leg.br/web/transparencia/sen"]
+
+
+def _juntar(blocos: list[str]) -> str:
+    return "\n\n".join(b for b in blocos if b)
+
+
+def legenda_gastos(resumo: ResumoGastos) -> str:
+    """Legenda do resumo mensal da cota parlamentar (mesmos números da arte)."""
+    mes = meses.rotulo(resumo.ano, resumo.mes)
+    deputados, senadores = resumo.da_casa("camara"), resumo.da_casa("senado")
+
+    def linhas(lista) -> str:
+        return "\n".join(f"• {g.nome} ({g.partido}): {meses.reais(g.total) if g.total else 'sem notas até agora'}"
+                         for g in lista)
+
+    categorias = "\n".join(f"• {nome}: {meses.reais(valor)} ({100 * valor / resumo.total:.0f}%)"
+                           for nome, valor in resumo.categorias()[:5]) if resumo.total else ""
+    blocos = [
+        f"💰 Quanto a bancada do Pará gastou da cota parlamentar em {mes}",
+        f"A bancada do Pará ({len(deputados)} deputados federais e {len(senadores)} senadores) usou "
+        f"{meses.reais(resumo.total)} da cota parlamentar em {mes}. A cota paga despesas do mandato, como passagens, "
+        "escritório, divulgação e combustível. Ela tem limite mensal, e cada gasto precisa de nota.",
+        f"Onde foi o dinheiro:\n{categorias}" if categorias else "",
+        f"Deputados federais (média de {meses.reais(resumo.media('camara'))}):\n{linhas(deputados)}",
+        f"Senadores (média de {meses.reais(resumo.media('senado'))}):\n{linhas(senadores)}",
+        "⚠️ Usar a cota é permitido e não indica irregularidade. As notas podem ser apresentadas em até 90 dias: "
+        f"os valores ainda podem aumentar. Notas consultadas em {formatar_data(resumo.gerado_em)}.",
+        "📎 Fonte: Câmara dos Deputados e Senado Federal, dados abertos. Cada nota pode ser conferida em:\n"
+        + "\n".join(FONTES_GASTOS),
+        " ".join(HASHTAGS_BASE + ["#Transparência", "#CotaParlamentar"]),
+    ]
+    texto = _juntar(blocos)
+    if len(texto) > LIMITE:  # as categorias também estão na arte: são as primeiras a sair
+        texto = _juntar(blocos[:2] + blocos[3:])
+    return texto
+
+
+def legenda_presenca(resumo: ResumoPresenca) -> str:
+    """Legenda do resumo mensal de presença (mesmos números da arte)."""
+    mes = meses.rotulo(resumo.ano, resumo.mes)
+
+    def montar(com_motivos: bool) -> str:
+        def motivos(p) -> str:
+            return f" ({', '.join(m.lower() for m in p.motivos)})" if com_motivos and p.motivos else ""
+
+        if resumo.dias_camara:
+            camara = [f"{texto_dias(resumo.dias_camara)} no mês.", "Presenças · faltas justificadas · faltas não justificadas:"]
+            camara += [f"• {p.nome} ({p.partido}): {p.presencas} · {p.justificadas} · {p.nao_justificadas}{motivos(p)}"
+                       for p in resumo.da_casa("camara")]
+            if resumo.sem_dados:
+                camara.append(f"Sem dados de presença disponíveis: {', '.join(resumo.sem_dados)}.")
+        else:
+            camara = ["Não houve sessões deliberativas no mês."]
+
+        if resumo.votacoes_senado:
+            senado = [f"{texto_votacoes(resumo.votacoes_senado)} no mês. No Senado, "
+                      "a presença é medida pela participação nessas votações."]
+            for p in resumo.da_casa("senado"):
+                linha = f"• {p.nome} ({p.partido}): votou em {p.presencas} de {p.total}"
+                if p.justificadas:
+                    linha += f"; ausência justificada: {p.justificadas}{motivos(p)}"
+                if p.nao_justificadas:
+                    linha += f"; não compareceu: {p.nao_justificadas}"
+                senado.append(linha)
+        else:
+            senado = ["Não houve votações nominais no mês."]
+
+        return _juntar([
+            f"🏛️ Presença da bancada do Pará em {mes}",
+            "CÂMARA DOS DEPUTADOS\n" + "\n".join(camara),
+            "SENADO FEDERAL\n" + "\n".join(senado),
+            "ℹ️ Falta justificada é a ausência com motivo aceito pela Casa, como licença médica ou missão oficial. "
+            f"Dados consultados em {formatar_data(resumo.gerado_em)}.",
+            "📎 Fonte: Câmara dos Deputados e Senado Federal, dados abertos.",
+            " ".join(HASHTAGS_BASE + ["#Transparência", "#PresençaParlamentar"]),
+        ])
+
+    texto = montar(com_motivos=True)
+    return texto if len(texto) <= LIMITE else montar(com_motivos=False)
 
 
 def legenda(item: Proposicao | Votacao, analise: Analise | None, por_id: dict[tuple[str, int], Parlamentar]) -> str:

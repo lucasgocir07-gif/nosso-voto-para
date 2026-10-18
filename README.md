@@ -76,6 +76,8 @@ Votações de mérito e projetos de lei chegam como **cartão para aprovação**
 |---|---|
 | `/post PL 1234/2026` | Cartão de um projeto ou votação da bancada já coletado. Aceita `câmara` ou `senado` para escolher a Casa |
 | `/aviso Seu texto` | Cartão com uma arte de aviso. Com mais de uma linha, a primeira vira o título |
+| `/gastos julho` | Cartão com os gastos da cota parlamentar no mês. Sem o mês, usa o de três meses atrás |
+| `/presenca setembro` | Cartão com a presença da bancada no mês. Sem o mês, usa o mês passado |
 | `/fila` | Posts esperando aprovação e os últimos publicados |
 | `/ajuda` | Lista os comandos |
 
@@ -89,13 +91,28 @@ Configuração (uma vez só), no `.env`:
 2. Mande um "oi" para o seu robô no Telegram.
 3. Rode `.venv/Scripts/python -m nossovoto.enviar --descobrir-chat`: ele grava o `TELEGRAM_CHAT_ID` no `.env`.
 
+## Gastos e presença (resumos do mês)
+
+```bash
+.venv/Scripts/python -m nossovoto.mensal                                # manda o que já estiver na hora
+.venv/Scripts/python -m nossovoto.mensal --gastos 2026-07 --previa      # só gera as artes em artes/mensal
+.venv/Scripts/python -m nossovoto.mensal --presenca setembro            # cartão de presença de setembro
+```
+
+Uma vez por mês chegam dois cartões para aprovação, cada um com arte em carrossel e legenda:
+
+- **Presença** (do mês anterior, a partir do dia 10): dias de sessão deliberativa na Câmara (presenças, faltas justificadas e faltas não justificadas, pela página oficial de cada deputado) e participação nas votações nominais do Senado. O dia 10 dá tempo de as faltas serem justificadas.
+- **Gastos da cota parlamentar** (de três meses atrás, a partir do dia 15): total da bancada, onde foi o dinheiro e quanto cada um gastou, a partir dos arquivos oficiais da Câmara (CEAP) e do Senado (CEAPS). São três meses porque as notas podem ser apresentadas em até 90 dias. Quem ainda não apresentou nenhuma nota aparece como "sem notas até agora".
+
+Cada mês sai uma vez só. Um cartão descartado não volta sozinho, mas pode ser pedido de novo com `/gastos` ou `/presenca`. Os números de cada resumo ficam em `dados/resumos/`, e é deles que a arte é refeita na hora de publicar. A comparação é só com a média da bancada, sem ranking de "bom" ou "ruim": usar a cota é permitido.
+
 ## Robô automático (GitHub Actions)
 
 Três rotinas em `.github/workflows/` rodam sozinhas no GitHub:
 
 | Rotina | Quando | O que faz |
 |---|---|---|
-| **Robô diário** | Todo dia, às 7h de Belém | Coleta, analisa e manda as novidades e os cartões de post ao Telegram |
+| **Robô diário** | Todo dia, às 7h de Belém | Coleta, analisa e manda as novidades e os cartões de post ao Telegram. Uma vez por mês, também os resumos de presença e gastos |
 | **Aprovação dos posts** | A cada 10 minutos | Lê os botões apertados no Telegram e publica o que foi aprovado |
 | **Renovar token do Instagram** | Segundas, às 9h | Renova o token do Instagram, que vence em 60 dias |
 

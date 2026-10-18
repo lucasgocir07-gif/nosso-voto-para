@@ -6,25 +6,26 @@ Uso:
     python -m nossovoto.aprovacao --configurar-comandos  # registra o menu de comandos no Telegram (uma vez só)
 
 Cada post chega ao Telegram com a arte, a legenda e os botões Postar / Editar legenda / Descartar.
-No Telegram também dá para pedir posts: /post PL 1234/2026, /aviso <texto>, /fila e /ajuda.
-Só os cliques e mensagens da conversa em TELEGRAM_CHAT_ID são obedecidos.
+No Telegram também dá para pedir posts: /post PL 1234/2026, /aviso <texto>, /gastos [mês], /presenca [mês],
+/fila e /ajuda. Só os cliques e mensagens da conversa em TELEGRAM_CHAT_ID são obedecidos.
 """
 
 import argparse
 import logging
 import os
 import sys
+from datetime import date
 from html import escape
-from pathlib import Path
 from typing import Callable
 
 from PIL import Image
 
-from . import apresentacao, artes
+from . import apresentacao, artes, meses, mensal
 from .ambiente import carregar_env
 from .armazenamento import achar_pasta, carregar
 from .busca import buscar
-from .config import PASTA_ARTES, PASTA_DADOS
+from .cartoes import botoes, enviar_cartao, salvar_pngs, texto_cartao
+from .config import PASTA_DADOS
 from .fila import AGUARDANDO_LEGENDA, DESCARTADO, PENDENTE, PUBLICADO, Fila, Post, carregar_fila, salvar_fila
 from .hospedagem import hospedar
 from .instagram import ErroInstagram, Instagram
@@ -41,6 +42,10 @@ AJUDA = (
     "<b>/post PL 1234/2026</b>: cartão de um projeto ou votação da bancada, para aprovar. "
     "Junte <i>câmara</i> ou <i>senado</i> para escolher a Casa.\n\n"
     "<b>/aviso Seu texto</b>: cartão com uma arte de aviso. Com mais de uma linha, a primeira vira o título.\n\n"
+    "<b>/gastos julho</b>: gastos da cota parlamentar no mês. Sem o mês, usa o de três meses atrás "
+    "(as notas chegam com até 90 dias de atraso).\n\n"
+    "<b>/presenca setembro</b>: presença na Câmara e participação nas votações do Senado. Sem o mês, usa o mês passado.\n\n"
+    "<i>O mês pode ser escrito como julho, 07/2026 ou 2026-07. Gastos e presença também chegam sozinhos todo mês.</i>\n\n"
     "<b>/fila</b>: posts esperando aprovação e os últimos publicados.\n\n"
     "<i>O robô confere o Telegram a cada 10 minutos: a resposta pode levar até uns 10 minutos.</i>"
 )
@@ -49,41 +54,19 @@ AJUDA = (
 COMANDOS_MENU = [
     ("post", "Cartão de um projeto ou votação. Ex.: /post PL 1234/2026"),
     ("aviso", "Cartão com uma arte de aviso. Ex.: /aviso Seu texto"),
+    ("gastos", "Gastos da cota parlamentar. Ex.: /gastos julho"),
+    ("presenca", "Presença da bancada. Ex.: /presenca setembro"),
     ("fila", "Posts esperando aprovação e últimos publicados"),
     ("ajuda", "Como usar os comandos"),
 ]
-
-
-def botoes(post: Post) -> list[list[tuple[str, str]]]:
-    return [[("✅ Postar", f"postar:{post.id}"), ("✏️ Editar legenda", f"editar:{post.id}")],
-            [("🗑️ Descartar", f"descartar:{post.id}")]]
-
-
-def texto_cartao(post: Post) -> str:
-    return (f"📲 <b>Post #{post.id} para o Instagram</b>\n<i>Confira a arte acima e a legenda abaixo.</i>\n\n"
-            f"{escape(post.legenda)}")
-
-
-def enviar_cartao(bot: Telegram, chat_id: str, post: Post, imagens: list[Path]) -> None:
-    """Manda a arte e, logo abaixo, a legenda com os botões."""
-    bot.enviar_imagens(chat_id, imagens)
-    post.id_mensagem = bot.enviar(chat_id, texto_cartao(post), botoes=botoes(post))["message_id"]
-
-
-def _salvar_pngs(imagens: list[Image.Image], nome_base: str) -> list[Path]:
-    destino = PASTA_ARTES / "comandos"
-    destino.mkdir(parents=True, exist_ok=True)
-    caminhos = []
-    for i, imagem in enumerate(imagens, start=1):
-        caminhos.append(destino / f"{nome_base}_{i}.png")
-        imagem.save(caminhos[-1], optimize=True)
-    return caminhos
 
 
 def imagens_do_post(post: Post) -> list[Image.Image]:
     """Refaz as imagens a partir dos dados guardados (as artes em PNG não vão para o repositório)."""
     if post.origem == "aviso":
         return [artes.arte_aviso(post.referencia)]
+    if post.origem in mensal.ORIGENS:
+        return mensal.imagens(post.origem, post.referencia)
     if post.origem == "apresentacao":
         pasta = achar_pasta(PASTA_DADOS / "processado")
         parlamentares = carregar(pasta).parlamentares if pasta else []
@@ -174,7 +157,7 @@ def _comando_aviso(bot: Telegram, chat_id: str, fila: Fila, texto: str) -> None:
         bot.enviar(chat_id, f"O aviso tem {len(texto)} caracteres. Para caber bem na arte, use até {LIMITE_AVISO}.")
         return
     post = fila.novo("aviso", texto, None, legenda_aviso(texto))
-    enviar_cartao(bot, chat_id, post, _salvar_pngs([artes.arte_aviso(texto)], f"aviso{post.id}"))
+    enviar_cartao(bot, chat_id, post, salvar_pngs([artes.arte_aviso(texto)], f"aviso{post.id}"))
 
 
 def _comando_post(bot: Telegram, chat_id: str, fila: Fila, pedido: str) -> None:
@@ -196,7 +179,22 @@ def _comando_post(bot: Telegram, chat_id: str, fila: Fila, pedido: str) -> None:
         analise = (coleta.analises or {}).get(chave(item))
         por_id = {(p.casa, p.id): p for p in coleta.parlamentares}
         existente = fila.novo("coleta", chave(item), coleta.pasta.name, legenda(item, analise, por_id))
-    enviar_cartao(bot, chat_id, existente, _salvar_pngs(artes.imagens_do_item(coleta, item), artes.nome_arquivo(item)))
+    enviar_cartao(bot, chat_id, existente, salvar_pngs(artes.imagens_do_item(coleta, item), artes.nome_arquivo(item)))
+
+
+def _comando_mensal(bot: Telegram, chat_id: str, fila: Fila, origem: str, argumento: str, hoje: date) -> None:
+    pedido = meses.interpretar(argumento, hoje, mensal.MESES_ATRAS[origem])
+    if pedido is None:
+        exemplo = "/gastos julho" if origem == "gastos" else "/presenca setembro"
+        bot.enviar(chat_id, f"Não entendi o mês <b>{escape(argumento)}</b>. Ex.: <b>{exemplo}</b>, "
+                            f"<b>/{origem} 07/2026</b> ou só <b>/{origem}</b>")
+        return
+    if erro := mensal.validar(*pedido, hoje):
+        bot.enviar(chat_id, escape(erro))
+        return
+    bot.enviar(chat_id, f"⏳ Montando o resumo de {mensal.ASSUNTO[origem]} de {meses.rotulo(*pedido)}... "
+                        "pode levar alguns minutos.")
+    mensal.cartao(bot, chat_id, fila, origem, *pedido, hoje=hoje)
 
 
 def _comando(bot: Telegram, chat_id: str, fila: Fila, texto: str) -> None:
@@ -210,6 +208,10 @@ def _comando(bot: Telegram, chat_id: str, fila: Fila, texto: str) -> None:
             _comando_aviso(bot, chat_id, fila, argumento)
         elif comando == "/post":
             _comando_post(bot, chat_id, fila, argumento)
+        elif comando == "/gastos":
+            _comando_mensal(bot, chat_id, fila, "gastos", argumento, date.today())
+        elif comando in ("/presenca", "/presença"):
+            _comando_mensal(bot, chat_id, fila, "presenca", argumento, date.today())
         else:  # /ajuda, /start ou algo desconhecido
             bot.enviar(chat_id, AJUDA)
     except ErroTelegram:
@@ -265,7 +267,7 @@ def _mandar_apresentacao(bot: Telegram, chat_id: str, fila: Fila, numero: int) -
     pasta = achar_pasta(PASTA_DADOS / "processado")
     imagens = apresentacao.imagens_do_post(referencia, carregar(pasta).parlamentares if pasta else [])
     post = fila.novo("apresentacao", referencia, None, apresentacao.LEGENDAS[referencia])
-    enviar_cartao(bot, chat_id, post, _salvar_pngs(imagens, referencia))
+    enviar_cartao(bot, chat_id, post, salvar_pngs(imagens, referencia))
 
 
 def main(argv: list[str] | None = None) -> int:

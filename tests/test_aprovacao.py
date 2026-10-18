@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from nossovoto import aprovacao
+from nossovoto import aprovacao, cartoes, meses
 from nossovoto.armazenamento import Coleta
 from nossovoto.fila import AGUARDANDO_LEGENDA, DESCARTADO, PENDENTE, PUBLICADO, Fila
 from nossovoto.modelos import Parlamentar, Proposicao
@@ -111,7 +111,7 @@ def test_ignora_quem_nao_e_voce():
 
 @pytest.fixture
 def artes_tmp(tmp_path, monkeypatch):
-    monkeypatch.setattr(aprovacao, "PASTA_ARTES", tmp_path)
+    monkeypatch.setattr(cartoes, "PASTA_ARTES", tmp_path)
     return tmp_path
 
 
@@ -202,3 +202,42 @@ def test_texto_sem_post_esperando_recebe_ajuda_e_legenda_longa_e_recusada():
     bot._atualizacoes = [_texto(11, "x" * 2300)]
     _processar(bot, fila)
     assert fila.buscar(1).legenda == "Legenda original" and "2300 caracteres" in bot.textos[-1]["texto"]
+
+
+# --- /gastos e /presenca ---
+
+@pytest.fixture
+def pedidos_mensais(monkeypatch):
+    feitos = []
+    monkeypatch.setattr(aprovacao.mensal, "cartao",
+                        lambda bot, chat_id, fila, origem, ano, mes, hoje=None: feitos.append((origem, ano, mes)))
+    return feitos
+
+
+def test_gastos_sem_mes_usa_tres_meses_atras_e_presenca_aceita_cedilha(pedidos_mensais):
+    hoje = date.today()
+    bot = BotFalso([_texto(1, "/gastos"), _texto(2, "/presença@NossoVotoParaBot 2025-03")])
+    _processar(bot, _fila())
+    assert pedidos_mensais == [("gastos", *meses.voltar(hoje.year, hoje.month, 3)), ("presenca", 2025, 3)]
+    assert "⏳ Montando o resumo de gastos da cota parlamentar" in bot.textos[0]["texto"]
+
+
+def test_mes_invalido_ou_que_nao_terminou_e_recusado(pedidos_mensais):
+    hoje = date.today()
+    bot = BotFalso([_texto(1, "/gastos ontem"), _texto(2, f"/presenca {hoje.year + 1}-01"), _texto(3, "/presenca 2022-12")])
+    _processar(bot, _fila())
+    assert pedidos_mensais == []
+    assert "Não entendi o mês <b>ontem</b>" in bot.textos[0]["texto"]
+    assert "ainda não terminou" in bot.textos[1]["texto"]
+    assert "fevereiro de 2023" in bot.textos[2]["texto"]
+
+
+def test_imagens_de_post_mensal_vem_do_resumo(monkeypatch):
+    monkeypatch.setattr(aprovacao.mensal, "imagens", lambda origem, referencia: [f"{origem}:{referencia}"])
+    post = Fila().novo("presenca", "2026-09", None, "x")
+    assert aprovacao.imagens_do_post(post) == ["presenca:2026-09"]
+
+
+def test_menu_tem_os_comandos_novos():
+    assert {"gastos", "presenca"} <= {c for c, _ in aprovacao.COMANDOS_MENU}
+    assert "/gastos" in aprovacao.AJUDA and "/presenca" in aprovacao.AJUDA
