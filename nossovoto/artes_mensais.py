@@ -12,8 +12,10 @@ from .presenca import ResumoPresenca, texto_dias, texto_votacoes
 AZUL_CLARO = (95, 125, 165)  # faltas justificadas
 CORES_PRESENCA = [(DOURADO, "Presença"), (AZUL_CLARO, "Falta justificada"), (BRANCO, "Falta não justificada")]
 
-AVISO_GASTOS = ("Gasto com a cota é legal e tem limite mensal. As notas podem ser apresentadas em até 90 dias: "
-                "os valores ainda podem aumentar.")
+# Sem "limite mensal": na Câmara o saldo não usado passa para os meses seguintes do ano,
+# então um mês acima do valor mensal não é irregular e não pode parecer que é.
+AVISO_GASTOS = ("Usar a cota é permitido e não indica irregularidade. As notas podem ser apresentadas em até "
+                "90 dias: os valores ainda podem aumentar.")
 SEM_NOTAS = "sem notas até agora"
 
 

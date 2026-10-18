@@ -112,7 +112,7 @@ def legenda_gastos(resumo: ResumoGastos) -> str:
         f"💰 Quanto a bancada do Pará gastou da cota parlamentar em {mes}",
         f"A bancada do Pará ({len(deputados)} deputados federais e {len(senadores)} senadores) usou "
         f"{meses.reais(resumo.total)} da cota parlamentar em {mes}. A cota paga despesas do mandato, como passagens, "
-        "escritório, divulgação e combustível. Ela tem limite mensal, e cada gasto precisa de nota.",
+        "escritório, divulgação e combustível, e cada gasto precisa de nota.",
         f"Onde foi o dinheiro:\n{categorias}" if categorias else "",
         f"Deputados federais (média de {meses.reais(resumo.media('camara'))}):\n{linhas(deputados)}",
         f"Senadores (média de {meses.reais(resumo.media('senado'))}):\n{linhas(senadores)}",

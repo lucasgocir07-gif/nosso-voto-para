@@ -97,6 +97,7 @@ def test_legenda_de_gastos():
     assert "• Deputado 16 (MDB): R$ 20.000" in texto
     assert "• Deputado 2 (MDB): sem notas até agora" in texto
     assert "não indica irregularidade" in texto and "Notas consultadas em 18/10/2026" in texto
+    assert "limite mensal" not in texto  # um mês acima do valor mensal não é irregular
     assert "#CotaParlamentar" in texto and len(texto) <= legendas.LIMITE
 
 
