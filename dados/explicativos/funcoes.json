@@ -1,0 +1,231 @@
+{
+ "gerado_em": "2026-10-18T15:59:15",
+ "parlamentares": [
+  {
+   "casa": "camara",
+   "id": 204495,
+   "nome": "Airton Faleiro",
+   "partido": "PT",
+   "cargos": [
+    "1º vice-presidente da Comissão da Amazônia e dos Povos Originários e Tradicionais",
+    "Vice-líder de bloco partidário na Câmara"
+   ],
+   "comissoes": [
+    "Minas e Energia"
+   ]
+  },
+  {
+   "casa": "camara",
+   "id": 220676,
+   "nome": "Andreia Siqueira",
+   "partido": "PSB",
+   "cargos": [],
+   "comissoes": [
+    "Defesa dos Direitos das Pessoas com Deficiência",
+    "Previdência, Assistência Social, Infância, Adolescência e Família"
+   ]
+  },
+  {
+   "casa": "camara",
+   "id": 220675,
+   "nome": "Antônio Doido",
+   "partido": "MDB",
+   "cargos": [],
+   "comissoes": [
+    "Desenvolvimento Urbano"
+   ]
+  },
+  {
+   "casa": "camara",
+   "id": 204496,
+   "nome": "Celso Sabino",
+   "partido": "PDT",
+   "cargos": [],
+   "comissoes": []
+  },
+  {
+   "casa": "camara",
+   "id": 220673,
+   "nome": "Delegado Caveira",
+   "partido": "PL",
+   "cargos": [],
+   "comissoes": [
+    "Segurança Pública e Combate ao Crime Organizado"
+   ]
+  },
+  {
+   "casa": "camara",
+   "id": 178908,
+   "nome": "Delegado Éder Mauro",
+   "partido": "PL",
+   "cargos": [
+    "Vice-líder da Maioria no Congresso Nacional"
+   ],
+   "comissoes": [
+    "Constituição e Justiça e de Cidadania",
+    "Defesa dos Direitos da Mulher"
+   ]
+  },
+  {
+   "casa": "camara",
+   "id": 220671,
+   "nome": "Dilvanda Faro",
+   "partido": "PT",
+   "cargos": [],
+   "comissoes": [
+    "Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural",
+    "Amazônia e dos Povos Originários e Tradicionais",
+    "Meio Ambiente e Desenvolvimento Sustentável",
+    "Defesa dos Direitos da Mulher"
+   ]
+  },
+  {
+   "casa": "camara",
+   "id": 220674,
+   "nome": "Dra. Alessandra Haber",
+   "partido": "PODE",
+   "cargos": [],
+   "comissoes": [
+    "Saúde"
+   ]
+  },
+  {
+   "casa": "camara",
+   "id": 74075,
+   "nome": "Elcione Barbalho",
+   "partido": "MDB",
+   "cargos": [],
+   "comissoes": [
+    "Constituição e Justiça e de Cidadania"
+   ]
+  },
+  {
+   "casa": "camara",
+   "id": 220672,
+   "nome": "Henderson Pinto",
+   "partido": "UNIÃO",
+   "cargos": [
+    "Vice-líder de bloco partidário na Câmara"
+   ],
+   "comissoes": [
+    "Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural"
+   ]
+  },
+  {
+   "casa": "camara",
+   "id": 178910,
+   "nome": "Joaquim Passarinho",
+   "partido": "PL",
+   "cargos": [
+    "Presidente da Comissão de Minas e Energia",
+    "Vice-líder do PL na Câmara"
+   ],
+   "comissoes": [
+    "Minas e Energia"
+   ]
+  },
+  {
+   "casa": "camara",
+   "id": 74079,
+   "nome": "José Priante",
+   "partido": "MDB",
+   "cargos": [],
+   "comissoes": []
+  },
+  {
+   "casa": "camara",
+   "id": 204497,
+   "nome": "Júnior Ferrari",
+   "partido": "PSD",
+   "cargos": [],
+   "comissoes": [
+    "Minas e Energia"
+   ]
+  },
+  {
+   "casa": "camara",
+   "id": 220677,
+   "nome": "Keniston Braga",
+   "partido": "MDB",
+   "cargos": [
+    "Presidente da Comissão de Desenvolvimento Urbano"
+   ],
+   "comissoes": [
+    "Desenvolvimento Urbano"
+   ]
+  },
+  {
+   "casa": "camara",
+   "id": 204498,
+   "nome": "Olival Marques",
+   "partido": "PODE",
+   "cargos": [],
+   "comissoes": [
+    "Desenvolvimento Econômico"
+   ]
+  },
+  {
+   "casa": "camara",
+   "id": 74084,
+   "nome": "Raimundo Santos",
+   "partido": "PSD",
+   "cargos": [],
+   "comissoes": [
+    "Turismo",
+    "Cultura"
+   ]
+  },
+  {
+   "casa": "camara",
+   "id": 153423,
+   "nome": "Renilce Nicodemos",
+   "partido": "MDB",
+   "cargos": [],
+   "comissoes": [
+    "Constituição e Justiça e de Cidadania",
+    "Orçamento (Comissão Mista)"
+   ]
+  },
+  {
+   "casa": "senado",
+   "id": 4639,
+   "nome": "Beto Faro",
+   "partido": "PT",
+   "cargos": [
+    "Vice-líder do PT no Senado"
+   ],
+   "comissoes": [
+    "Serviços de Infraestrutura",
+    "Meio Ambiente",
+    "Ciência, Tecnologia, Inovação e Informática",
+    "Desenvolvimento Regional e Turismo",
+    "Agricultura e Reforma Agrária",
+    "Transparência, Governança, Fiscalização e Controle e Defesa do Consumidor"
+   ]
+  },
+  {
+   "casa": "senado",
+   "id": 35,
+   "nome": "Jader Barbalho",
+   "partido": "MDB",
+   "cargos": [],
+   "comissoes": [
+    "Constituição, Justiça e Cidadania",
+    "Agricultura e Reforma Agrária"
+   ]
+  },
+  {
+   "casa": "senado",
+   "id": 3806,
+   "nome": "Zequinha Marinho",
+   "partido": "PODE",
+   "cargos": [
+    "Presidente da Comissão de Agricultura e Reforma Agrária"
+   ],
+   "comissoes": [
+    "Meio Ambiente",
+    "Agricultura e Reforma Agrária"
+   ]
+  }
+ ]
+}

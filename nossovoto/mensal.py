@@ -25,9 +25,9 @@ from . import gastos, meses, presenca
 from .ambiente import carregar_env
 from .armazenamento import achar_pasta, carregar
 from .artes_mensais import arte_gastos, arte_presenca
-from .cartoes import enviar_cartao, salvar_pngs
+from .cartoes import mandar_cartao, salvar_pngs
 from .config import PASTA_ARTES, PASTA_DADOS
-from .fila import DESCARTADO, PENDENTE, PUBLICADO, Fila, Post, carregar_fila, salvar_fila
+from .fila import DESCARTADO, PUBLICADO, Fila, Post, carregar_fila, salvar_fila
 from .legendas import legenda_gastos, legenda_presenca
 from .modelos import Parlamentar
 from .telegram import ErroTelegram, Telegram
@@ -116,17 +116,8 @@ def cartao(bot: Telegram, chat_id: str, fila: Fila, origem: str, ano: int, mes: 
     if avisos := observacoes(origem, resumo, hoje or date.today()):
         bot.enviar(chat_id, "ℹ️ <b>Só para você</b> (não vai no post):\n" + "\n".join(f"• {escape(a)}" for a in avisos))
 
-    novo = existente is None
-    post = fila.novo(origem, referencia, None, legenda_de(origem, resumo)) if novo else existente
-    if not novo:
-        post.legenda, post.estado = legenda_de(origem, resumo), PENDENTE
-    try:
-        enviar_cartao(bot, chat_id, post, pngs)
-    except Exception:
-        if novo:  # sem cartão no Telegram, o post não fica na fila: o robô tenta de novo amanhã
-            fila.posts.remove(post)
-        raise
-    return post
+    # se o envio falhar, o post não fica na fila: o robô tenta de novo amanhã
+    return mandar_cartao(bot, chat_id, fila, origem, referencia, legenda_de(origem, resumo), pngs, existente)
 
 
 def devidos(hoje: date) -> list[tuple[str, int, int]]:

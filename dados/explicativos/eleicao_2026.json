@@ -1,0 +1,215 @@
+{
+ "totalizado_em": "05/10/2026",
+ "gerado_em": "2026-10-18T15:59:33",
+ "eleitos": [
+  {
+   "casa": "senado",
+   "sq": "140002550780",
+   "nome": "Chicão",
+   "nome_completo": "Francisco das Chagas Silva Melo Filho",
+   "partido": "UNIÃO",
+   "votos": 2014409,
+   "reeleito": false,
+   "feminino": false
+  },
+  {
+   "casa": "senado",
+   "sq": "140002550779",
+   "nome": "Helder",
+   "nome_completo": "Helder Zahluth Barbalho",
+   "partido": "MDB",
+   "votos": 2342070,
+   "reeleito": false,
+   "feminino": false
+  },
+  {
+   "casa": "camara",
+   "sq": "140002540619",
+   "nome": "Andréia Siqueira",
+   "nome_completo": "Andreia Brito Goncalves Siqueira",
+   "partido": "PSB",
+   "votos": 155473,
+   "reeleito": true,
+   "feminino": true
+  },
+  {
+   "casa": "camara",
+   "sq": "140002537039",
+   "nome": "Júnior Ferrari",
+   "nome_completo": "Joao Ferrari Junior",
+   "partido": "PSD",
+   "votos": 213645,
+   "reeleito": true,
+   "feminino": false
+  },
+  {
+   "casa": "camara",
+   "sq": "140002537040",
+   "nome": "Raimundo Santos",
+   "nome_completo": "Raimundo Jose Pereira dos Santos",
+   "partido": "PSD",
+   "votos": 65059,
+   "reeleito": true,
+   "feminino": false
+  },
+  {
+   "casa": "camara",
+   "sq": "140002540476",
+   "nome": "Lu Ogawa",
+   "nome_completo": "Jose Lucio Ogawa Rodrigues",
+   "partido": "PP",
+   "votos": 136774,
+   "reeleito": false,
+   "feminino": false
+  },
+  {
+   "casa": "camara",
+   "sq": "140002548357",
+   "nome": "Dilvanda Faro",
+   "nome_completo": "Dilvanda Furtado Faro",
+   "partido": "PT",
+   "votos": 192372,
+   "reeleito": true,
+   "feminino": true
+  },
+  {
+   "casa": "camara",
+   "sq": "140002548362",
+   "nome": "Airton Faleiro",
+   "nome_completo": "Airton Luiz Faleiro",
+   "partido": "PT",
+   "votos": 90181,
+   "reeleito": true,
+   "feminino": false
+  },
+  {
+   "casa": "camara",
+   "sq": "140002547295",
+   "nome": "Dra. Alessandra Haber",
+   "nome_completo": "Alessandra Haber Carvalho Santos",
+   "partido": "PODE",
+   "votos": 272856,
+   "reeleito": true,
+   "feminino": true
+  },
+  {
+   "casa": "camara",
+   "sq": "140002547302",
+   "nome": "Bob Fllay",
+   "nome_completo": "Flavio Higor Pantoja",
+   "partido": "PODE",
+   "votos": 63285,
+   "reeleito": false,
+   "feminino": false
+  },
+  {
+   "casa": "camara",
+   "sq": "140002546711",
+   "nome": "Rogerio Barra",
+   "nome_completo": "Hugo Rogerio Sarmanho Barra",
+   "partido": "PL",
+   "votos": 89973,
+   "reeleito": false,
+   "feminino": false
+  },
+  {
+   "casa": "camara",
+   "sq": "140002546709",
+   "nome": "Delegado Caveira",
+   "nome_completo": "Lenildo Mendes dos Santos Sertao",
+   "partido": "PL",
+   "votos": 414927,
+   "reeleito": true,
+   "feminino": false
+  },
+  {
+   "casa": "camara",
+   "sq": "140002546710",
+   "nome": "Joaquim Passarinho",
+   "nome_completo": "Joaquim Passarinho Pinto de Souza Porto",
+   "partido": "PL",
+   "votos": 146307,
+   "reeleito": true,
+   "feminino": false
+  },
+  {
+   "casa": "camara",
+   "sq": "140002540461",
+   "nome": "Cassio Andrade",
+   "nome_completo": "Cassio Coelho Andrade",
+   "partido": "MDB",
+   "votos": 107124,
+   "reeleito": false,
+   "feminino": false
+  },
+  {
+   "casa": "camara",
+   "sq": "140002540452",
+   "nome": "Priante",
+   "nome_completo": "Jose Benito Priante Junior",
+   "partido": "MDB",
+   "votos": 170557,
+   "reeleito": true,
+   "feminino": false
+  },
+  {
+   "casa": "camara",
+   "sq": "140002540454",
+   "nome": "Renilce Nicodemos",
+   "nome_completo": "Renilce Conceicao Nicodemos de Albuquerque",
+   "partido": "MDB",
+   "votos": 201601,
+   "reeleito": true,
+   "feminino": true
+  },
+  {
+   "casa": "camara",
+   "sq": "140002540455",
+   "nome": "Adriano Coelho",
+   "nome_completo": "Marco Adriano Albuquerque Coelho",
+   "partido": "MDB",
+   "votos": 114699,
+   "reeleito": false,
+   "feminino": false
+  },
+  {
+   "casa": "camara",
+   "sq": "140002540456",
+   "nome": "Jader Filho",
+   "nome_completo": "Jader Fontenelle Barbalho Filho",
+   "partido": "MDB",
+   "votos": 326617,
+   "reeleito": false,
+   "feminino": false
+  },
+  {
+   "casa": "camara",
+   "sq": "140002540462",
+   "nome": "Antonio Doido",
+   "nome_completo": "Antonio Leocadio dos Santos",
+   "partido": "MDB",
+   "votos": 109670,
+   "reeleito": true,
+   "feminino": false
+  }
+ ],
+ "saem": {
+  "senado": [
+   "Jader Barbalho (MDB)",
+   "Zequinha Marinho (PODE)"
+  ],
+  "camara": [
+   "Celso Sabino (PDT)",
+   "Delegado Éder Mauro (PL)",
+   "Elcione Barbalho (MDB)",
+   "Henderson Pinto (UNIÃO)",
+   "Keniston Braga (MDB)",
+   "Olival Marques (PODE)"
+  ]
+ },
+ "ficam": [
+  "Beto Faro (PT)"
+ ],
+ "menor_votacao_eleito": 63285,
+ "acima_do_ultimo_fora": 7
+}

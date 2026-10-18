@@ -70,7 +70,7 @@ Votações de mérito e projetos de lei chegam como **cartão para aprovação**
 .venv/Scripts/python -m nossovoto.instagram --verificar       # confere a conexão com o Instagram (não publica)
 ```
 
-**Comandos no Telegram:** a rotina de aprovação lê a conversa a cada 10 minutos.
+**Comandos no Telegram:** a rotina de aprovação lê a conversa de tempos em tempos (o GitHub agenda a cada 10 minutos, mas na prática roda a cada 20 ou 30).
 
 | Comando | O que faz |
 |---|---|
@@ -78,6 +78,7 @@ Votações de mérito e projetos de lei chegam como **cartão para aprovação**
 | `/aviso Seu texto` | Cartão com uma arte de aviso. Com mais de uma linha, a primeira vira o título |
 | `/gastos julho` | Cartão com os gastos da cota parlamentar no mês. Sem o mês, usa o de três meses atrás |
 | `/presenca setembro` | Cartão com a presença da bancada no mês. Sem o mês, usa o mês passado |
+| `/serie` | Lista a série explicativa. `/serie 3` manda o post 3; `/serie todos`, os que ainda não foram enviados |
 | `/fila` | Posts esperando aprovação e os últimos publicados |
 | `/ajuda` | Lista os comandos |
 
@@ -106,6 +107,26 @@ Uma vez por mês chegam dois cartões para aprovação, cada um com arte em carr
 
 Cada mês sai uma vez só. Um cartão descartado não volta sozinho, mas pode ser pedido de novo com `/gastos` ou `/presenca`. Os números de cada resumo ficam em `dados/resumos/`, e é deles que a arte é refeita na hora de publicar. A comparação é só com a média da bancada, sem ranking de "bom" ou "ruim": usar a cota é permitido.
 
+## Série explicativa
+
+```bash
+.venv/Scripts/python -m nossovoto.explicativos --atualizar   # busca cargos e comissões (Câmara/Senado) e o resultado do TSE
+.venv/Scripts/python -m nossovoto.explicativos --previa      # gera as artes em artes/explicativos e mostra as legendas
+```
+
+Seis posts para explicar sobre quem o projeto fala:
+
+1. **O que faz um deputado federal**
+2. **O que faz um senador**
+3. **Como uma lei é feita**
+4. **Por que acompanhar o Congresso**
+5. **Quem é quem**: cargos (presidência de comissão, liderança) e comissões em que cada parlamentar é titular
+6. **Eleições 2026**: senadores e deputados federais eleitos pelo Pará (resultado oficial do TSE), quem é reeleito e quem deixa o cargo
+
+Os textos sobre os cargos seguem a Constituição, com os artigos no rodapé de cada slide. Os posts 5 e 6 usam os dados guardados em `dados/explicativos/`. Para atualizar, rode `--atualizar` e envie os arquivos ao GitHub. No post 5 só entram cargos em comissões permanentes, iniciados no biênio atual e sem data de fim, porque os dados abertos às vezes deixam cargos antigos sem data de fim. O post 6 reconhece quem já está no cargo pelo nome completo.
+
+Os cartões são pedidos pelo Telegram com `/serie`.
+
 ## Robô automático (GitHub Actions)
 
 Três rotinas em `.github/workflows/` rodam sozinhas no GitHub:
@@ -113,7 +134,7 @@ Três rotinas em `.github/workflows/` rodam sozinhas no GitHub:
 | Rotina | Quando | O que faz |
 |---|---|---|
 | **Robô diário** | Todo dia, às 7h de Belém | Coleta, analisa e manda as novidades e os cartões de post ao Telegram. Uma vez por mês, também os resumos de presença e gastos |
-| **Aprovação dos posts** | A cada 10 minutos | Lê os botões apertados no Telegram e publica o que foi aprovado |
+| **Aprovação dos posts** | A cada 10 a 30 minutos | Lê os botões apertados no Telegram e publica o que foi aprovado |
 | **Renovar token do Instagram** | Segundas, às 9h | Renova o token do Instagram, que vence em 60 dias |
 
 Os dados (coletas, análises, fila de posts) são guardados de volta no repositório a cada rodada. Se algo falhar, chega um aviso no Telegram com o link do erro. Todas as rotinas também podem ser rodadas na hora, pelo botão **Run workflow** na aba **Actions**.

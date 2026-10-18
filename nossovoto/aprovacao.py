@@ -7,7 +7,7 @@ Uso:
 
 Cada post chega ao Telegram com a arte, a legenda e os botões Postar / Editar legenda / Descartar.
 No Telegram também dá para pedir posts: /post PL 1234/2026, /aviso <texto>, /gastos [mês], /presenca [mês],
-/fila e /ajuda. Só os cliques e mensagens da conversa em TELEGRAM_CHAT_ID são obedecidos.
+/serie [número], /fila e /ajuda. Só os cliques e mensagens da conversa em TELEGRAM_CHAT_ID são obedecidos.
 """
 
 import argparse
@@ -20,7 +20,7 @@ from typing import Callable
 
 from PIL import Image
 
-from . import apresentacao, artes, meses, mensal
+from . import apresentacao, artes, explicativos, meses, mensal
 from .ambiente import carregar_env
 from .armazenamento import achar_pasta, carregar
 from .busca import buscar
@@ -46,8 +46,10 @@ AJUDA = (
     "(as notas chegam com até 90 dias de atraso).\n\n"
     "<b>/presenca setembro</b>: presença na Câmara e participação nas votações do Senado. Sem o mês, usa o mês passado.\n\n"
     "<i>O mês pode ser escrito como julho, 07/2026 ou 2026-07. Gastos e presença também chegam sozinhos todo mês.</i>\n\n"
+    "<b>/serie</b>: série explicativa (o que faz cada cargo, como uma lei é feita, quem é quem, eleitos em 2026). "
+    "<b>/serie 3</b> manda o post 3; <b>/serie todos</b>, os que ainda não foram enviados.\n\n"
     "<b>/fila</b>: posts esperando aprovação e os últimos publicados.\n\n"
-    "<i>O robô confere o Telegram a cada 10 minutos: a resposta pode levar até uns 10 minutos.</i>"
+    "<i>O robô confere o Telegram de tempos em tempos (a cada 10 a 30 minutos): a resposta pode demorar um pouco.</i>"
 )
 
 # Menu que aparece ao digitar "/" no Telegram
@@ -56,6 +58,7 @@ COMANDOS_MENU = [
     ("aviso", "Cartão com uma arte de aviso. Ex.: /aviso Seu texto"),
     ("gastos", "Gastos da cota parlamentar. Ex.: /gastos julho"),
     ("presenca", "Presença da bancada. Ex.: /presenca setembro"),
+    ("serie", "Série explicativa sobre o Congresso. Ex.: /serie 1"),
     ("fila", "Posts esperando aprovação e últimos publicados"),
     ("ajuda", "Como usar os comandos"),
 ]
@@ -67,6 +70,8 @@ def imagens_do_post(post: Post) -> list[Image.Image]:
         return [artes.arte_aviso(post.referencia)]
     if post.origem in mensal.ORIGENS:
         return mensal.imagens(post.origem, post.referencia)
+    if post.origem == explicativos.ORIGEM:
+        return explicativos.imagens(post.referencia)
     if post.origem == "apresentacao":
         pasta = achar_pasta(PASTA_DADOS / "processado")
         parlamentares = carregar(pasta).parlamentares if pasta else []
@@ -197,6 +202,24 @@ def _comando_mensal(bot: Telegram, chat_id: str, fila: Fila, origem: str, argume
     mensal.cartao(bot, chat_id, fila, origem, *pedido, hoje=hoje)
 
 
+def _comando_serie(bot: Telegram, chat_id: str, fila: Fila, argumento: str) -> None:
+    if not argumento:
+        bot.enviar(chat_id, explicativos.texto_serie(fila))
+        return
+    if argumento.lower() == "todos":
+        refs = [r for r in explicativos.ORDEM if not fila.ja_tem(explicativos.ORIGEM, r)]
+        if not refs:
+            bot.enviar(chat_id, "Todos os posts da série já foram enviados. Mande /serie para ver a situação de cada um.")
+        for ref in refs:
+            explicativos.cartao(bot, chat_id, fila, ref)
+        return
+    ref = explicativos.referencia(argumento)
+    if ref is None:
+        bot.enviar(chat_id, f"Não achei <b>{escape(argumento)}</b> na série. Mande /serie para ver a lista.")
+        return
+    explicativos.cartao(bot, chat_id, fila, ref)
+
+
 def _comando(bot: Telegram, chat_id: str, fila: Fila, texto: str) -> None:
     partes = texto.split(maxsplit=1)
     comando = partes[0].split("@")[0].lower()  # "/post@NossoVotoParaBot" também vale
@@ -212,6 +235,8 @@ def _comando(bot: Telegram, chat_id: str, fila: Fila, texto: str) -> None:
             _comando_mensal(bot, chat_id, fila, "gastos", argumento, date.today())
         elif comando in ("/presenca", "/presença"):
             _comando_mensal(bot, chat_id, fila, "presenca", argumento, date.today())
+        elif comando in ("/serie", "/série"):
+            _comando_serie(bot, chat_id, fila, argumento)
         else:  # /ajuda, /start ou algo desconhecido
             bot.enviar(chat_id, AJUDA)
     except ErroTelegram:

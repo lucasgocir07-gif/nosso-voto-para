@@ -241,3 +241,26 @@ def test_imagens_de_post_mensal_vem_do_resumo(monkeypatch):
 def test_menu_tem_os_comandos_novos():
     assert {"gastos", "presenca"} <= {c for c, _ in aprovacao.COMANDOS_MENU}
     assert "/gastos" in aprovacao.AJUDA and "/presenca" in aprovacao.AJUDA
+
+
+# --- /serie ---
+
+def test_serie_lista_manda_um_e_manda_todos(monkeypatch):
+    enviados = []
+    monkeypatch.setattr(aprovacao.explicativos, "cartao",
+                        lambda bot, chat_id, fila, ref: enviados.append(ref) or fila.novo("explicativo", ref, None, ref))
+    fila = _fila()
+    bot = BotFalso([_texto(1, "/serie"), _texto(2, "/serie 3"), _texto(3, "/série todos"), _texto(4, "/serie xyz"),
+                    _texto(5, "/serie todos")])
+    _processar(bot, fila)
+    assert "Série explicativa" in bot.textos[0]["texto"]
+    assert enviados == ["lei", "deputado", "senador", "acompanhar", "funcoes", "eleitos"]
+    assert "Não achei <b>xyz</b>" in bot.textos[1]["texto"]
+    assert "já foram enviados" in bot.textos[2]["texto"]
+
+
+def test_imagens_de_post_da_serie(monkeypatch):
+    monkeypatch.setattr(aprovacao.explicativos, "imagens", lambda referencia: [f"serie:{referencia}"])
+    post = Fila().novo("explicativo", "lei", None, "x")
+    assert aprovacao.imagens_do_post(post) == ["serie:lei"]
+    assert "serie" in {c for c, _ in aprovacao.COMANDOS_MENU}
