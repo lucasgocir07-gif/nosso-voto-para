@@ -1,5 +1,5 @@
 {
- "offset_telegram": 397317771,
+ "offset_telegram": 397317773,
  "posts": [
   {
    "id": 1,
@@ -41,6 +41,34 @@
    "id_pedido_legenda": null,
    "publicado_em": "2026-10-17T18:37:57",
    "permalink": "https://www.instagram.com/p/DenF0u3lSU1/",
+   "erro": null
+  },
+  {
+   "id": 4,
+   "origem": "gastos",
+   "referencia": "2026-07",
+   "periodo": null,
+   "legenda": "💰 Quanto a bancada do Pará gastou da cota parlamentar em julho de 2026\n\nA bancada do Pará (17 deputados federais e 3 senadores) usou R$ 362.086 da cota parlamentar em julho de 2026. A cota paga despesas do mandato, como passagens, escritório, divulgação e combustível. Ela tem limite mensal, e cada gasto precisa de nota.\n\nOnde foi o dinheiro:\n• Aluguel de veículos, aeronaves e barcos: R$ 176.993 (49%)\n• Escritório: R$ 36.966 (10%)\n• Combustíveis: R$ 34.281 (9%)\n• Passagens: R$ 30.201 (8%)\n• Locomoção, hospedagem e alimentação: R$ 28.231 (8%)\n\nDeputados federais (média de R$ 14.309):\n• Dra. Alessandra Haber (PODE): R$ 67.587\n• Celso Sabino (PDT): R$ 45.000\n• Keniston Braga (MDB): R$ 28.547\n• Henderson Pinto (UNIÃO): R$ 18.262\n• Joaquim Passarinho (PL): R$ 13.545\n• Raimundo Santos (PSD): R$ 12.077\n• José Priante (MDB): R$ 11.000\n• Delegado Éder Mauro (PL): R$ 10.000\n• Antônio Doido (MDB): R$ 9.642\n• Dilvanda Faro (PT): R$ 9.436\n• Elcione Barbalho (MDB): R$ 8.919\n• Delegado Caveira (PL): R$ 2.811\n• Airton Faleiro (PT): R$ 2.616\n• Júnior Ferrari (PSD): R$ 2.482\n• Andreia Siqueira (PSB): R$ 749\n• Renilce Nicodemos (MDB): R$ 580\n• Olival Marques (PODE): sem notas até agora\n\nSenadores (média de R$ 39.611):\n• Zequinha Marinho (PODE): R$ 62.421\n• Beto Faro (PT): R$ 43.413\n• Jader Barbalho (MDB): R$ 13.000\n\n⚠️ Usar a cota é permitido e não indica irregularidade. As notas podem ser apresentadas em até 90 dias: os valores ainda podem aumentar. Notas consultadas em 18/10/2026.\n\n📎 Fonte: Câmara dos Deputados e Senado Federal, dados abertos. Cada nota pode ser conferida em:\nhttps://www.camara.leg.br/transparencia/gastos-parlamentares\nhttps://www25.senado.leg.br/web/transparencia/sen\n\n#Pará #Congresso #NossoVotoPará #Transparência #CotaParlamentar",
+   "estado": "pendente",
+   "criado_em": "2026-10-18T11:42:51",
+   "id_mensagem": 36,
+   "id_pedido_legenda": null,
+   "publicado_em": null,
+   "permalink": null,
+   "erro": null
+  },
+  {
+   "id": 5,
+   "origem": "presenca",
+   "referencia": "2026-09",
+   "periodo": null,
+   "legenda": "🏛️ Presença da bancada do Pará em setembro de 2026\n\nCÂMARA DOS DEPUTADOS\n3 dias de sessão deliberativa no mês.\nPresenças · faltas justificadas · faltas não justificadas:\n• Airton Faleiro (PT): 3 · 0 · 0\n• Andreia Siqueira (PSB): 3 · 0 · 0\n• Antônio Doido (MDB): 3 · 0 · 0\n• Celso Sabino (PDT): 3 · 0 · 0\n• Delegado Caveira (PL): 3 · 0 · 0\n• Delegado Éder Mauro (PL): 3 · 0 · 0\n• Dilvanda Faro (PT): 3 · 0 · 0\n• Dra. Alessandra Haber (PODE): 3 · 0 · 0\n• Elcione Barbalho (MDB): 3 · 0 · 0\n• Henderson Pinto (UNIÃO): 3 · 0 · 0\n• Joaquim Passarinho (PL): 3 · 0 · 0\n• José Priante (MDB): 2 · 0 · 1\n• Júnior Ferrari (PSD): 3 · 0 · 0\n• Keniston Braga (MDB): 3 · 0 · 0\n• Olival Marques (PODE): 3 · 0 · 0\n• Raimundo Santos (PSD): 3 · 0 · 0\n• Renilce Nicodemos (MDB): 3 · 0 · 0\n\nSENADO FEDERAL\n2 votações nominais no mês. No Senado, a presença é medida pela participação nessas votações.\n• Beto Faro (PT): votou em 2 de 2\n• Jader Barbalho (MDB): votou em 2 de 2\n• Zequinha Marinho (PODE): votou em 2 de 2\n\nℹ️ Falta justificada é a ausência com motivo aceito pela Casa, como licença médica ou missão oficial. Dados consultados em 18/10/2026.\n\n📎 Fonte: Câmara dos Deputados e Senado Federal, dados abertos.\n\n#Pará #Congresso #NossoVotoPará #Transparência #PresençaParlamentar",
+   "estado": "pendente",
+   "criado_em": "2026-10-18T11:44:44",
+   "id_mensagem": 40,
+   "id_pedido_legenda": null,
+   "publicado_em": null,
+   "permalink": null,
    "erro": null
   }
  ]

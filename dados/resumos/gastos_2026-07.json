@@ -1,0 +1,234 @@
+{
+ "ano": 2026,
+ "mes": 7,
+ "gerado_em": "2026-10-18T11:42:29",
+ "parlamentares": [
+  {
+   "casa": "camara",
+   "id": 204495,
+   "nome": "Airton Faleiro",
+   "partido": "PT",
+   "total": 2616.08,
+   "por_categoria": {
+    "Combustíveis": 805.19,
+    "Telefonia": 1810.89
+   }
+  },
+  {
+   "casa": "camara",
+   "id": 220676,
+   "nome": "Andreia Siqueira",
+   "partido": "PSB",
+   "total": 749.0,
+   "por_categoria": {
+    "Escritório": 749.0
+   }
+  },
+  {
+   "casa": "camara",
+   "id": 220675,
+   "nome": "Antônio Doido",
+   "partido": "MDB",
+   "total": 9641.57,
+   "por_categoria": {
+    "Escritório": 330.0,
+    "Combustíveis": 248.11,
+    "Telefonia": 263.46000000000004,
+    "Aluguel de veículos, aeronaves e barcos": 8800.0
+   }
+  },
+  {
+   "casa": "camara",
+   "id": 204496,
+   "nome": "Celso Sabino",
+   "partido": "PDT",
+   "total": 45000.0,
+   "por_categoria": {
+    "Aluguel de veículos, aeronaves e barcos": 45000.0
+   }
+  },
+  {
+   "casa": "camara",
+   "id": 220673,
+   "nome": "Delegado Caveira",
+   "partido": "PL",
+   "total": 2810.69,
+   "por_categoria": {
+    "Combustíveis": 2601.69,
+    "Locomoção, hospedagem e alimentação": 209.0
+   }
+  },
+  {
+   "casa": "camara",
+   "id": 178908,
+   "nome": "Delegado Éder Mauro",
+   "partido": "PL",
+   "total": 10000.0,
+   "por_categoria": {
+    "Aluguel de veículos, aeronaves e barcos": 10000.0
+   }
+  },
+  {
+   "casa": "camara",
+   "id": 220671,
+   "nome": "Dilvanda Faro",
+   "partido": "PT",
+   "total": 9435.82,
+   "por_categoria": {
+    "Escritório": 820.0,
+    "Combustíveis": 8499.26,
+    "Telefonia": 116.56
+   }
+  },
+  {
+   "casa": "camara",
+   "id": 220674,
+   "nome": "Dra. Alessandra Haber",
+   "partido": "PODE",
+   "total": 67586.67,
+   "por_categoria": {
+    "Escritório": 820.0,
+    "Aluguel de veículos, aeronaves e barcos": 66766.67
+   }
+  },
+  {
+   "casa": "camara",
+   "id": 74075,
+   "nome": "Elcione Barbalho",
+   "partido": "MDB",
+   "total": 8919.46,
+   "por_categoria": {
+    "Escritório": 500.0,
+    "Combustíveis": 5407.51,
+    "Telefonia": 2281.55,
+    "Locomoção, hospedagem e alimentação": 730.4
+   }
+  },
+  {
+   "casa": "camara",
+   "id": 220672,
+   "nome": "Henderson Pinto",
+   "partido": "UNIÃO",
+   "total": 18262.14,
+   "por_categoria": {
+    "Escritório": 3320.0,
+    "Combustíveis": 3082.7799999999997,
+    "Telefonia": 699.36,
+    "Locomoção, hospedagem e alimentação": 1260.0,
+    "Aluguel de veículos, aeronaves e barcos": 9900.0
+   }
+  },
+  {
+   "casa": "camara",
+   "id": 178910,
+   "nome": "Joaquim Passarinho",
+   "partido": "PL",
+   "total": 13544.81,
+   "por_categoria": {
+    "Escritório": 1800.0,
+    "Combustíveis": 3346.9000000000005,
+    "Telefonia": 871.27,
+    "Aluguel de veículos, aeronaves e barcos": 7526.639999999999
+   }
+  },
+  {
+   "casa": "camara",
+   "id": 74079,
+   "nome": "José Priante",
+   "partido": "MDB",
+   "total": 11000.0,
+   "por_categoria": {
+    "Aluguel de veículos, aeronaves e barcos": 11000.0
+   }
+  },
+  {
+   "casa": "camara",
+   "id": 204497,
+   "nome": "Júnior Ferrari",
+   "partido": "PSD",
+   "total": 2481.58,
+   "por_categoria": {
+    "Combustíveis": 2365.02,
+    "Telefonia": 116.56
+   }
+  },
+  {
+   "casa": "camara",
+   "id": 220677,
+   "nome": "Keniston Braga",
+   "partido": "MDB",
+   "total": 28547.230000000003,
+   "por_categoria": {
+    "Escritório": 2390.0,
+    "Combustíveis": 7924.110000000001,
+    "Telefonia": 233.12,
+    "Aluguel de veículos, aeronaves e barcos": 18000.0
+   }
+  },
+  {
+   "casa": "camara",
+   "id": 204498,
+   "nome": "Olival Marques",
+   "partido": "PODE",
+   "total": 0.0,
+   "por_categoria": {}
+  },
+  {
+   "casa": "camara",
+   "id": 74084,
+   "nome": "Raimundo Santos",
+   "partido": "PSD",
+   "total": 12076.789999999999,
+   "por_categoria": {
+    "Escritório": 11635.43,
+    "Telefonia": 441.36
+   }
+  },
+  {
+   "casa": "camara",
+   "id": 153423,
+   "nome": "Renilce Nicodemos",
+   "partido": "MDB",
+   "total": 580.0,
+   "por_categoria": {
+    "Serviço de táxi, pedágio e estacionamento": 580.0
+   }
+  },
+  {
+   "casa": "senado",
+   "id": 4639,
+   "nome": "Beto Faro",
+   "partido": "PT",
+   "total": 43412.62,
+   "por_categoria": {
+    "Consultorias e pesquisas": 8000.0,
+    "Divulgação do mandato": 25000.0,
+    "Locomoção, hospedagem e alimentação": 7759.27,
+    "Passagens": 2653.35
+   }
+  },
+  {
+   "casa": "senado",
+   "id": 35,
+   "nome": "Jader Barbalho",
+   "partido": "MDB",
+   "total": 13000.0,
+   "por_categoria": {
+    "Consultorias e pesquisas": 13000.0
+   }
+  },
+  {
+   "casa": "senado",
+   "id": 3806,
+   "nome": "Zequinha Marinho",
+   "partido": "PODE",
+   "total": 62421.479999999996,
+   "por_categoria": {
+    "Escritório": 14601.660000000002,
+    "Consultorias e pesquisas": 2000.0,
+    "Locomoção, hospedagem e alimentação": 18271.920000000002,
+    "Passagens": 27547.899999999994
+   }
+  }
+ ]
+}

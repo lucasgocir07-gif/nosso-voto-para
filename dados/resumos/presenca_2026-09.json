@@ -1,0 +1,210 @@
+{
+ "ano": 2026,
+ "mes": 9,
+ "gerado_em": "2026-10-18T11:44:43",
+ "dias_camara": 3,
+ "votacoes_senado": 2,
+ "parlamentares": [
+  {
+   "casa": "camara",
+   "id": 204495,
+   "nome": "Airton Faleiro",
+   "partido": "PT",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 220676,
+   "nome": "Andreia Siqueira",
+   "partido": "PSB",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 220675,
+   "nome": "Antônio Doido",
+   "partido": "MDB",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 204496,
+   "nome": "Celso Sabino",
+   "partido": "PDT",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 220673,
+   "nome": "Delegado Caveira",
+   "partido": "PL",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 178908,
+   "nome": "Delegado Éder Mauro",
+   "partido": "PL",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 220671,
+   "nome": "Dilvanda Faro",
+   "partido": "PT",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 220674,
+   "nome": "Dra. Alessandra Haber",
+   "partido": "PODE",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 74075,
+   "nome": "Elcione Barbalho",
+   "partido": "MDB",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 220672,
+   "nome": "Henderson Pinto",
+   "partido": "UNIÃO",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 178910,
+   "nome": "Joaquim Passarinho",
+   "partido": "PL",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 74079,
+   "nome": "José Priante",
+   "partido": "MDB",
+   "presencas": 2,
+   "justificadas": 0,
+   "nao_justificadas": 1,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 204497,
+   "nome": "Júnior Ferrari",
+   "partido": "PSD",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 220677,
+   "nome": "Keniston Braga",
+   "partido": "MDB",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 204498,
+   "nome": "Olival Marques",
+   "partido": "PODE",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 74084,
+   "nome": "Raimundo Santos",
+   "partido": "PSD",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "camara",
+   "id": 153423,
+   "nome": "Renilce Nicodemos",
+   "partido": "MDB",
+   "presencas": 3,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "senado",
+   "id": 4639,
+   "nome": "Beto Faro",
+   "partido": "PT",
+   "presencas": 2,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "senado",
+   "id": 35,
+   "nome": "Jader Barbalho",
+   "partido": "MDB",
+   "presencas": 2,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  },
+  {
+   "casa": "senado",
+   "id": 3806,
+   "nome": "Zequinha Marinho",
+   "partido": "PODE",
+   "presencas": 2,
+   "justificadas": 0,
+   "nao_justificadas": 0,
+   "motivos": {}
+  }
+ ],
+ "sem_dados": []
+}
