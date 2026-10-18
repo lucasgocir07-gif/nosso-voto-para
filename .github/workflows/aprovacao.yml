@@ -15,7 +15,7 @@ concurrency:
 jobs:
   aprovacao:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45 # publicar vários posts aprovados de uma vez leva tempo (cada carrossel, 1 a 2 minutos)
     env:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
