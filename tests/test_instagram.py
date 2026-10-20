@@ -41,7 +41,17 @@ def test_renovar_token_usa_endpoint_sem_versao(monkeypatch):
 
     monkeypatch.setattr(ig.sessao, "request", request)
     assert ig.renovar_token()["expires_in"] == 5184000
-    assert urls == [("https://graph.instagram.com/refresh_access_token", {"grant_type": "ig_refresh_token"})]
+    assert urls == [("https://graph.instagram.com/refresh_access_token",
+                     {"grant_type": "ig_refresh_token", "access_token": TOKEN})]
+
+
+def test_erro_na_renovacao_nao_mostra_o_token(monkeypatch):
+    ig = instagram.Instagram(TOKEN)
+    monkeypatch.setattr(ig.sessao, "request", lambda metodo, url, params, timeout, data=None:
+                        Resposta(400, {"error": {"message": "Session has expired"}}))
+    with pytest.raises(instagram.ErroInstagram) as erro:
+        ig.renovar_token()
+    assert TOKEN not in str(erro.value)
 
 
 def test_erros_viram_erro_instagram_sem_vazar_token(monkeypatch):

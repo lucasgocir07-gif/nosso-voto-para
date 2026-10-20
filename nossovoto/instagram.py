@@ -31,6 +31,7 @@ class ErroInstagram(Exception):
 class Instagram:
     def __init__(self, token: str, timeout: float = 60):
         self.timeout = timeout
+        self._token = token
         self.sessao = requests.Session()
         # O token vai no cabeçalho, nunca na URL: assim ele não aparece em erros nem em registros
         self.sessao.headers.update({"Authorization": f"Bearer {token}"})
@@ -58,8 +59,13 @@ class Instagram:
         return corpo["data"][0] if "data" in corpo else corpo
 
     def renovar_token(self) -> dict:
-        """Renova o token de 60 dias (precisa ter mais de 24 h). Devolve {'access_token', 'expires_in'}."""
-        return self.chamar("GET", "refresh_access_token", {"grant_type": "ig_refresh_token"}, versao=False)
+        """Renova o token de 60 dias (precisa ter mais de 24 h). Devolve {'access_token', 'expires_in'}.
+
+        Esta é a única chamada que não aceita o token no cabeçalho ("The parameter access_token is required"):
+        ele vai no endereço, e as mensagens de erro continuam sem o endereço, então ele não aparece nos registros.
+        """
+        return self.chamar("GET", "refresh_access_token", {"grant_type": "ig_refresh_token", "access_token": self._token},
+                           versao=False)
 
     def _aguardar(self, container: str, espera: float = 5, limite: float = 300) -> None:
         """Espera o Instagram terminar de processar a mídia (status FINISHED)."""
