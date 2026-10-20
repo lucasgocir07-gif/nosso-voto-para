@@ -1,0 +1,58 @@
+[
+ {
+  "casa": "camara",
+  "id": 2647757,
+  "identificacao": "PRLP 3",
+  "tipo": "PRLP",
+  "ementa": "Institui o Portal Nacional de Informações Estratégias Socioambientais, Climáticas e Territoriais - \"INFOCLIMA-TERRA-BRASIL\", e dá outras providências.",
+  "data_apresentacao": "2026-10-15",
+  "autores": [
+   74075
+  ],
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2647757",
+  "situacao": "Aguardando Providências Internas",
+  "data_situacao": "2026-10-15"
+ },
+ {
+  "casa": "camara",
+  "id": 2647761,
+  "identificacao": "PRLE 1",
+  "tipo": "PRLE",
+  "ementa": "Institui o Portal Nacional de Informações Estratégicas Socioambientais, Climáticas e Territoriais - “INFOCLIMA-TERRA-BRASIL”, e dá outras providências.",
+  "data_apresentacao": "2026-10-15",
+  "autores": [
+   74075
+  ],
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2647761",
+  "situacao": "Aguardando Providências Internas",
+  "data_situacao": "2026-10-15"
+ },
+ {
+  "casa": "senado",
+  "id": 9113033,
+  "identificacao": "PL 5540/2026",
+  "tipo": "PL",
+  "ementa": "Institui a Política Nacional de Bioenergia Amazônica para Sistemas Isolados (PROBIO-SI), destinada a incentivar a substituição do óleo diesel fóssil por biocombustíveis e bioenergia produzidos a partir de biomassa local de origem sustentável, com prioridade para a Região Norte, e altera a Lei nº 12.111, de 9 de dezembro de 2009.",
+  "data_apresentacao": "2026-10-13",
+  "autores": [
+   35
+  ],
+  "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/175933",
+  "situacao": "AGUARDANDO DESPACHO",
+  "data_situacao": "2026-10-13"
+ },
+ {
+  "casa": "senado",
+  "id": 9113053,
+  "identificacao": "REQ 353/2026 - CDIR",
+  "tipo": "REQ",
+  "ementa": "Requer licença de 13/10/2026 a 15/10/2026",
+  "data_apresentacao": "2026-10-13",
+  "autores": [
+   3806
+  ],
+  "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/175934",
+  "situacao": "DEFERIDA",
+  "data_situacao": "2026-10-16"
+ }
+]

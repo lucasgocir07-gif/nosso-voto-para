@@ -1,0 +1,399 @@
+[
+ {
+  "casa": "camara",
+  "id": "2236186-60",
+  "data": "2026-10-14",
+  "descricao": "Rejeitada a Subemenda Substitutiva ao Projeto de Lei Complementar nº 281, de 2019, adotada pelo relator da Comissão Especial. Sim: 252; Não: 176; Total: 428.",
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2236186",
+  "proposicao": "PLP 281/2019",
+  "ementa": "Dispõe sobre os regimes de resolução das instituições autorizadas a funcionar pelo Banco Central do Brasil, pela Superintendência de Seguros Privados e pela Comissão de Valores Mobiliários.",
+  "resultado": "Rejeitada",
+  "secreta": false,
+  "votos": [
+   {
+    "parlamentar_id": 220673,
+    "nome": "Delegado Caveira",
+    "partido": "PL",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 220677,
+    "nome": "Keniston Braga",
+    "partido": "MDB",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 153423,
+    "nome": "Renilce Nicodemos",
+    "partido": "MDB",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 74084,
+    "nome": "Raimundo Santos",
+    "partido": "PSD",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 74075,
+    "nome": "Elcione Barbalho",
+    "partido": "MDB",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 220676,
+    "nome": "Andreia Siqueira",
+    "partido": "PSB",
+    "voto": "Não"
+   },
+   {
+    "parlamentar_id": 74079,
+    "nome": "José Priante",
+    "partido": "MDB",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 204495,
+    "nome": "Airton Faleiro",
+    "partido": "PT",
+    "voto": "Não"
+   },
+   {
+    "parlamentar_id": 204497,
+    "nome": "Júnior Ferrari",
+    "partido": "PSD",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 220671,
+    "nome": "Dilvanda Faro",
+    "partido": "PT",
+    "voto": "Não"
+   },
+   {
+    "parlamentar_id": 204498,
+    "nome": "Olival Marques",
+    "partido": "PODE",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 204496,
+    "nome": "Celso Sabino",
+    "partido": "PDT",
+    "voto": "Não"
+   },
+   {
+    "parlamentar_id": 220675,
+    "nome": "Antônio Doido",
+    "partido": "MDB",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 178910,
+    "nome": "Joaquim Passarinho",
+    "partido": "PL",
+    "voto": "Sim"
+   }
+  ],
+  "sem_registro": [
+   178908,
+   220674,
+   220672
+  ]
+ },
+ {
+  "casa": "camara",
+  "id": "2635476-23",
+  "data": "2026-10-14",
+  "descricao": "Rejeitado o Requerimento. Sim: 11; Não: 387; Total: 398.",
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2635476",
+  "proposicao": "PLP 186/2026",
+  "ementa": "Altera a Lei Complementar nº 123, de 14 de dezembro de 2006, para dispor sobre o limite de receita bruta anual e o número de empregados do Microempreendedor Individual.",
+  "resultado": "Rejeitada",
+  "secreta": false,
+  "votos": [
+   {
+    "parlamentar_id": 220673,
+    "nome": "Delegado Caveira",
+    "partido": "PL",
+    "voto": "Não"
+   },
+   {
+    "parlamentar_id": 74084,
+    "nome": "Raimundo Santos",
+    "partido": "PSD",
+    "voto": "Não"
+   },
+   {
+    "parlamentar_id": 178910,
+    "nome": "Joaquim Passarinho",
+    "partido": "PL",
+    "voto": "Não"
+   },
+   {
+    "parlamentar_id": 220672,
+    "nome": "Henderson Pinto",
+    "partido": "UNIÃO",
+    "voto": "Não"
+   },
+   {
+    "parlamentar_id": 153423,
+    "nome": "Renilce Nicodemos",
+    "partido": "MDB",
+    "voto": "Não"
+   },
+   {
+    "parlamentar_id": 74075,
+    "nome": "Elcione Barbalho",
+    "partido": "MDB",
+    "voto": "Não"
+   },
+   {
+    "parlamentar_id": 220677,
+    "nome": "Keniston Braga",
+    "partido": "MDB",
+    "voto": "Não"
+   },
+   {
+    "parlamentar_id": 204496,
+    "nome": "Celso Sabino",
+    "partido": "PDT",
+    "voto": "Não"
+   },
+   {
+    "parlamentar_id": 220671,
+    "nome": "Dilvanda Faro",
+    "partido": "PT",
+    "voto": "Não"
+   },
+   {
+    "parlamentar_id": 220675,
+    "nome": "Antônio Doido",
+    "partido": "MDB",
+    "voto": "Não"
+   },
+   {
+    "parlamentar_id": 204498,
+    "nome": "Olival Marques",
+    "partido": "PODE",
+    "voto": "Não"
+   },
+   {
+    "parlamentar_id": 220676,
+    "nome": "Andreia Siqueira",
+    "partido": "PSB",
+    "voto": "Não"
+   }
+  ],
+  "sem_registro": [
+   204495,
+   178908,
+   220674,
+   74079,
+   204497
+  ]
+ },
+ {
+  "casa": "camara",
+  "id": "2635476-36",
+  "data": "2026-10-14",
+  "descricao": "Aprovada a Subemenda Substitutiva Global ao Projeto de Lei Complementar nº 186, de 2026, adotada pelo relator da Comissão de Indústria, Comércio e Serviços, ressalvados os destaques. Sim: 461; Não: 4; Total: 465.",
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2635476",
+  "proposicao": "PLP 186/2026",
+  "ementa": "Altera a Lei Complementar nº 123, de 14 de dezembro de 2006, para dispor sobre o limite de receita bruta anual e o número de empregados do Microempreendedor Individual.",
+  "resultado": "Aprovada",
+  "secreta": false,
+  "votos": [
+   {
+    "parlamentar_id": 204498,
+    "nome": "Olival Marques",
+    "partido": "PODE",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 74079,
+    "nome": "José Priante",
+    "partido": "MDB",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 178910,
+    "nome": "Joaquim Passarinho",
+    "partido": "PL",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 178908,
+    "nome": "Delegado Éder Mauro",
+    "partido": "PL",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 220674,
+    "nome": "Dra. Alessandra Haber",
+    "partido": "PODE",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 220673,
+    "nome": "Delegado Caveira",
+    "partido": "PL",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 204495,
+    "nome": "Airton Faleiro",
+    "partido": "PT",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 220677,
+    "nome": "Keniston Braga",
+    "partido": "MDB",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 74084,
+    "nome": "Raimundo Santos",
+    "partido": "PSD",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 204497,
+    "nome": "Júnior Ferrari",
+    "partido": "PSD",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 153423,
+    "nome": "Renilce Nicodemos",
+    "partido": "MDB",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 220671,
+    "nome": "Dilvanda Faro",
+    "partido": "PT",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 220675,
+    "nome": "Antônio Doido",
+    "partido": "MDB",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 204496,
+    "nome": "Celso Sabino",
+    "partido": "PDT",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 220676,
+    "nome": "Andreia Siqueira",
+    "partido": "PSB",
+    "voto": "Sim"
+   }
+  ],
+  "sem_registro": [
+   74075,
+   220672
+  ]
+ },
+ {
+  "casa": "senado",
+  "id": "7106",
+  "data": "2026-10-14",
+  "descricao": "Votação nominal da Proposta de Emenda à Constituição nº 221, de 2019, em primeiro turno.",
+  "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/174386",
+  "proposicao": "PEC 221/2019",
+  "ementa": "Altera o art. 7º da Constituição Federal para reduzir a duração máxima semanal do trabalho e prever 2 (dois) dias de repouso semanal remunerado, sem qualquer redução salarial; e dá outras providências.",
+  "resultado": "Aprovada",
+  "secreta": false,
+  "votos": [
+   {
+    "parlamentar_id": 4639,
+    "nome": "Beto Faro",
+    "partido": "PT",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 35,
+    "nome": "Jader Barbalho",
+    "partido": "MDB",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 3806,
+    "nome": "Zequinha Marinho",
+    "partido": "PODE",
+    "voto": "Sim"
+   }
+  ],
+  "sem_registro": []
+ },
+ {
+  "casa": "senado",
+  "id": "7107",
+  "data": "2026-10-14",
+  "descricao": "Votação nominal da Proposta de Emenda à Constituição nº 221, de 2019, em segundo turno.",
+  "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/174386",
+  "proposicao": "PEC 221/2019",
+  "ementa": "Altera o art. 7º da Constituição Federal para reduzir a duração máxima semanal do trabalho e prever 2 (dois) dias de repouso semanal remunerado, sem qualquer redução salarial; e dá outras providências.",
+  "resultado": "Aprovada",
+  "secreta": false,
+  "votos": [
+   {
+    "parlamentar_id": 4639,
+    "nome": "Beto Faro",
+    "partido": "PT",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 35,
+    "nome": "Jader Barbalho",
+    "partido": "MDB",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 3806,
+    "nome": "Zequinha Marinho",
+    "partido": "PODE",
+    "voto": "Sim"
+   }
+  ],
+  "sem_registro": []
+ },
+ {
+  "casa": "senado",
+  "id": "7108",
+  "data": "2026-10-15",
+  "descricao": "Votação nominal do Projeto de Lei Complementar nº 186, de 2026, nos termos do parecer.",
+  "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/175969",
+  "proposicao": "PLP 186/2026",
+  "ementa": "Altera a Lei Complementar nº 123, de 14 de dezembro de 2006, para atualizar o limite de receita bruta anual e o número de empregados do Microempreendedor Individual (MEI), conceder remissão de créditos de titularidade da União de sua responsabilidade e dispor sobre a aplicação da medida.",
+  "resultado": "Aprovada",
+  "secreta": false,
+  "votos": [
+   {
+    "parlamentar_id": 4639,
+    "nome": "Beto Faro",
+    "partido": "PT",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 35,
+    "nome": "Jader Barbalho",
+    "partido": "MDB",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 3806,
+    "nome": "Zequinha Marinho",
+    "partido": "PODE",
+    "voto": "Sim"
+   }
+  ],
+  "sem_registro": []
+ }
+]
