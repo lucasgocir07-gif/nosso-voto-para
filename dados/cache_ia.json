@@ -82,5 +82,11 @@
   "tema": "Economia e tributos",
   "resumo": "Foi votado o projeto que altera as regras do Microempreendedor Individual para atualizar o limite de faturamento anual e o número de empregados. O texto também trata do perdão de dívidas com a União. A proposta foi aprovada.",
   "afeta_para": false
+ },
+ "77c50f008baa8521cc77b21a258f2e9bf139b71c": {
+  "natureza": "Política pública",
+  "tema": "Meio ambiente e clima",
+  "resumo": "Cria uma política nacional para promover produtos de baixo carbono e estimula o Brasil como fornecedor internacional desses bens. O texto altera leis anteriores sobre mudanças climáticas e licitações. Os efeitos práticos para o público não foram detalhados.",
+  "afeta_para": false
  }
 }

@@ -154,6 +154,20 @@
    "publicado_em": null,
    "permalink": null,
    "erro": null
+  },
+  {
+   "id": 12,
+   "origem": "coleta",
+   "referencia": "proposicao:senado:9115491",
+   "periodo": "2026-10-14_a_2026-10-21",
+   "legenda": "📄 Nova proposta no Senado: PL 5611/2026, de Sen. Jader Barbalho (MDB)\n\nCria uma política nacional para promover produtos de baixo carbono e estimula o Brasil como fornecedor internacional desses bens. O texto altera leis anteriores sobre mudanças climáticas e licitações. Os efeitos práticos para o público não foram detalhados.\n\nSituação: Aguardando despacho.\n\n📎 Fonte: Senado Federal, dados abertos.\nhttps://www25.senado.leg.br/web/atividade/materias/-/materia/175991\nℹ️ Resumo feito com ajuda de IA e revisado antes de publicar.\n\n#Pará #Congresso #NossoVotoPará #Senado #MeioAmbiente",
+   "estado": "pendente",
+   "criado_em": "2026-10-21T10:26:03",
+   "id_mensagem": 77,
+   "id_pedido_legenda": null,
+   "publicado_em": null,
+   "permalink": null,
+   "erro": null
   }
  ]
 }

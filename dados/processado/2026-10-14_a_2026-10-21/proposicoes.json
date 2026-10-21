@@ -1,0 +1,58 @@
+[
+ {
+  "casa": "camara",
+  "id": 2647757,
+  "identificacao": "PRLP 3",
+  "tipo": "PRLP",
+  "ementa": "Institui o Portal Nacional de Informações Estratégias Socioambientais, Climáticas e Territoriais - \"INFOCLIMA-TERRA-BRASIL\", e dá outras providências.",
+  "data_apresentacao": "2026-10-15",
+  "autores": [
+   74075
+  ],
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2647757",
+  "situacao": "Aguardando Providências Internas",
+  "data_situacao": "2026-10-15"
+ },
+ {
+  "casa": "camara",
+  "id": 2647761,
+  "identificacao": "PRLE 1",
+  "tipo": "PRLE",
+  "ementa": "Institui o Portal Nacional de Informações Estratégicas Socioambientais, Climáticas e Territoriais - “INFOCLIMA-TERRA-BRASIL”, e dá outras providências.",
+  "data_apresentacao": "2026-10-15",
+  "autores": [
+   74075
+  ],
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2647761",
+  "situacao": "Aguardando Providências Internas",
+  "data_situacao": "2026-10-15"
+ },
+ {
+  "casa": "camara",
+  "id": 2648411,
+  "identificacao": "REQ 4317/2026",
+  "tipo": "REQ",
+  "ementa": "equer a realização de Sessão Solene em homenagem ao Dia Internacional do Combate à Corrupção, a ocorrer no dia 9 de dezembro de 2026.",
+  "data_apresentacao": "2026-10-20",
+  "autores": [
+   178910
+  ],
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2648411",
+  "situacao": null,
+  "data_situacao": "2026-10-20"
+ },
+ {
+  "casa": "senado",
+  "id": 9115491,
+  "identificacao": "PL 5611/2026",
+  "tipo": "PL",
+  "ementa": "Institui a Política Nacional de Promoção de Produtos de Baixo Carbono (PNPBC), dispõe sobre a promoção do Brasil como fornecedor internacional de bens e serviços de baixa intensidade de carbono e sobre instrumentos de estímulo à demanda por esses produtos, e altera as Leis nº 12.187, de 29 de dezembro de 2009, e nº 14.133, de 1º de abril de 2021.",
+  "data_apresentacao": "2026-10-20",
+  "autores": [
+   35
+  ],
+  "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/175991",
+  "situacao": "AGUARDANDO DESPACHO",
+  "data_situacao": "2026-10-20"
+ }
+]

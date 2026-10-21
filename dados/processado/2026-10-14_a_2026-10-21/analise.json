@@ -1,0 +1,82 @@
+{
+ "proposicao:camara:2647757": {
+  "natureza": "Relatoria",
+  "tema": null,
+  "resumo": null,
+  "afeta_para": null,
+  "tipo_votacao": null,
+  "fonte": "regra"
+ },
+ "proposicao:camara:2647761": {
+  "natureza": "Relatoria",
+  "tema": null,
+  "resumo": null,
+  "afeta_para": null,
+  "tipo_votacao": null,
+  "fonte": "regra"
+ },
+ "proposicao:camara:2648411": {
+  "natureza": "Debate e articulação",
+  "tema": null,
+  "resumo": null,
+  "afeta_para": null,
+  "tipo_votacao": null,
+  "fonte": "regra"
+ },
+ "proposicao:senado:9115491": {
+  "natureza": "Política pública",
+  "tema": "Meio ambiente e clima",
+  "resumo": "Cria uma política nacional para promover produtos de baixo carbono e estimula o Brasil como fornecedor internacional desses bens. O texto altera leis anteriores sobre mudanças climáticas e licitações. Os efeitos práticos para o público não foram detalhados.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "votacao:camara:2236186-60": {
+  "natureza": null,
+  "tema": "Economia e tributos",
+  "resumo": "Foi votada uma versão alternativa para regras sobre regimes de resolução de instituições financeiras e de seguros. A proposta alternativa foi rejeitada.",
+  "afeta_para": false,
+  "tipo_votacao": "Mérito",
+  "fonte": "ia"
+ },
+ "votacao:camara:2635476-23": {
+  "natureza": null,
+  "tema": "Economia e tributos",
+  "resumo": "Foi votado um pedido de mudança no andamento do projeto sobre o limite de faturamento e número de empregados do Microempreendedor Individual. O pedido foi rejeitado pela maioria dos deputados.",
+  "afeta_para": false,
+  "tipo_votacao": "Procedimento",
+  "fonte": "regra+ia"
+ },
+ "votacao:camara:2635476-36": {
+  "natureza": null,
+  "tema": "Economia e tributos",
+  "resumo": "Foi votado um texto alternativo que muda as regras do Microempreendedor Individual. A proposta mexe no limite de faturamento anual e na quantidade de empregados permitida. O texto foi aprovado pela Câmara.",
+  "afeta_para": false,
+  "tipo_votacao": "Mérito",
+  "fonte": "ia"
+ },
+ "votacao:senado:7106": {
+  "natureza": null,
+  "tema": "Trabalho e previdência",
+  "resumo": "Foi votada em primeiro turno a proposta para reduzir o limite de horas de trabalho por semana na Constituição. O texto prevê dois dias de descanso remunerado por semana sem cortar o salário. A proposta foi aprovada.",
+  "afeta_para": false,
+  "tipo_votacao": "Mérito",
+  "fonte": "ia"
+ },
+ "votacao:senado:7107": {
+  "natureza": null,
+  "tema": "Trabalho e previdência",
+  "resumo": "Foi votada em segundo turno a proposta para reduzir a duração máxima semanal do trabalho. O texto também prevê dois dias de repouso semanal remunerado sem redução de salário. A proposta foi aprovada.",
+  "afeta_para": false,
+  "tipo_votacao": "Mérito",
+  "fonte": "ia"
+ },
+ "votacao:senado:7108": {
+  "natureza": null,
+  "tema": "Economia e tributos",
+  "resumo": "Foi votado o projeto que altera as regras do Microempreendedor Individual para atualizar o limite de faturamento anual e o número de empregados. O texto também trata do perdão de dívidas com a União. A proposta foi aprovada.",
+  "afeta_para": false,
+  "tipo_votacao": "Mérito",
+  "fonte": "ia"
+ }
+}
