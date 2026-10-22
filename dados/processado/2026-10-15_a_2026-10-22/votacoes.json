@@ -1,0 +1,34 @@
+[
+ {
+  "casa": "senado",
+  "id": "7108",
+  "data": "2026-10-15",
+  "descricao": "Votação nominal do Projeto de Lei Complementar nº 186, de 2026, nos termos do parecer.",
+  "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/175969",
+  "proposicao": "PLP 186/2026",
+  "ementa": "Altera a Lei Complementar nº 123, de 14 de dezembro de 2006, para atualizar o limite de receita bruta anual e o número de empregados do Microempreendedor Individual (MEI), conceder remissão de créditos de titularidade da União de sua responsabilidade e dispor sobre a aplicação da medida.",
+  "resultado": "Aprovada",
+  "secreta": false,
+  "votos": [
+   {
+    "parlamentar_id": 4639,
+    "nome": "Beto Faro",
+    "partido": "PT",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 35,
+    "nome": "Jader Barbalho",
+    "partido": "MDB",
+    "voto": "Sim"
+   },
+   {
+    "parlamentar_id": 3806,
+    "nome": "Zequinha Marinho",
+    "partido": "PODE",
+    "voto": "Sim"
+   }
+  ],
+  "sem_registro": []
+ }
+]
