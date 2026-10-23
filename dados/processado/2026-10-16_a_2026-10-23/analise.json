@@ -1,0 +1,26 @@
+{
+ "proposicao:camara:2648411": {
+  "natureza": "Debate e articulação",
+  "tema": null,
+  "resumo": null,
+  "afeta_para": null,
+  "tipo_votacao": null,
+  "fonte": "regra"
+ },
+ "proposicao:senado:9115491": {
+  "natureza": "Política pública",
+  "tema": "Meio ambiente e clima",
+  "resumo": "Cria uma política nacional para promover produtos de baixo carbono e estimula o Brasil como fornecedor internacional desses bens. O texto altera leis anteriores sobre mudanças climáticas e licitações. Os efeitos práticos para o público não foram detalhados.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:senado:9116073": {
+  "natureza": "Procedimento",
+  "tema": "Política e Estado",
+  "resumo": "A proposta pede a abertura de investigação disciplinar contra um senador com base na Constituição e no Código de Ética. O texto não informa quais pessoas ou regiões são afetadas pela medida.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ }
+}
