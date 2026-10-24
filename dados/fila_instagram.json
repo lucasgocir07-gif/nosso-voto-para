@@ -168,6 +168,20 @@
    "publicado_em": null,
    "permalink": null,
    "erro": null
+  },
+  {
+   "id": 13,
+   "origem": "coleta",
+   "referencia": "proposicao:senado:9117328",
+   "periodo": "2026-10-17_a_2026-10-24",
+   "legenda": "📄 Nova proposta no Senado: PL 5651/2026, de Sen. Jader Barbalho (MDB)\n\nA proposta cria uma política nacional para qualificação profissional e apoio ao empreendedorismo de jovens entre 16 e 29 anos. A medida estabelece regras para integrar ações de emprego e capacitação.\n\nSituação: Aguardando despacho.\n\n📎 Fonte: Senado Federal, dados abertos.\nhttps://www25.senado.leg.br/web/atividade/materias/-/materia/176080\nℹ️ Resumo feito com ajuda de IA e revisado antes de publicar.\n\n#Pará #Congresso #NossoVotoPará #Senado #Trabalho",
+   "estado": "pendente",
+   "criado_em": "2026-10-24T10:20:10",
+   "id_mensagem": 83,
+   "id_pedido_legenda": null,
+   "publicado_em": null,
+   "permalink": null,
+   "erro": null
   }
  ]
 }
