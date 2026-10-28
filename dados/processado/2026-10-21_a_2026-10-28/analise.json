@@ -1,0 +1,58 @@
+{
+ "proposicao:camara:2648970": {
+  "natureza": "Relatoria",
+  "tema": null,
+  "resumo": null,
+  "afeta_para": null,
+  "tipo_votacao": null,
+  "fonte": "regra"
+ },
+ "proposicao:camara:2648971": {
+  "natureza": "Relatoria",
+  "tema": null,
+  "resumo": null,
+  "afeta_para": null,
+  "tipo_votacao": null,
+  "fonte": "regra"
+ },
+ "proposicao:camara:2649008": {
+  "natureza": "Relatoria",
+  "tema": null,
+  "resumo": null,
+  "afeta_para": null,
+  "tipo_votacao": null,
+  "fonte": "regra"
+ },
+ "proposicao:camara:2649013": {
+  "natureza": "Política pública",
+  "tema": "Segurança pública",
+  "resumo": "A proposta muda as regras sobre compra, posse e porte de armas de fogo. Ela também determina a integração entre dois sistemas de controle de armas. O texto não especifica quais pessoas ou regiões são diretamente afetadas.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:camara:2649030": {
+  "natureza": "Procedimento",
+  "tema": "Economia e tributos",
+  "resumo": "A proposta é um recurso contra a decisão final sobre um projeto de lei. O projeto trata das regras para a atividade de operação logística e para a emissão de títulos por empresas de armazéns gerais. O texto não deixa claro o efeito prático.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:senado:9116073": {
+  "natureza": "Procedimento",
+  "tema": "Política e Estado",
+  "resumo": "A proposta pede a abertura de investigação disciplinar contra um senador com base na Constituição e no Código de Ética. O texto não informa quais pessoas ou regiões são afetadas pela medida.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:senado:9117328": {
+  "natureza": "Política pública",
+  "tema": "Trabalho e previdência",
+  "resumo": "A proposta cria uma política nacional para qualificação profissional e apoio ao empreendedorismo de jovens entre 16 e 29 anos. A medida estabelece regras para integrar ações de emprego e capacitação.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ }
+}
