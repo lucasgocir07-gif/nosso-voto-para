@@ -1,0 +1,86 @@
+[
+ {
+  "casa": "camara",
+  "id": 2648970,
+  "identificacao": "PRLP 4",
+  "tipo": "PRLP",
+  "ementa": "Institui o Portal Nacional de Informações Estratégicas Socioambientais, Climáticas e Territoriais - “INFOCLIMA-TERRA-BRASIL”, e dá outras providências.",
+  "data_apresentacao": "2026-10-27",
+  "autores": [
+   74075
+  ],
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2648970",
+  "situacao": "Aguardando Providências Internas",
+  "data_situacao": "2026-10-27"
+ },
+ {
+  "casa": "camara",
+  "id": 2648971,
+  "identificacao": "PRLE 2",
+  "tipo": "PRLE",
+  "ementa": "Institui o Portal Nacional de Informações Estratégicas Socioambientais, Climáticas e Territoriais - “INFOCLIMA-TERRA-BRASIL”, e dá outras providências.",
+  "data_apresentacao": "2026-10-27",
+  "autores": [
+   74075
+  ],
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2648971",
+  "situacao": "Aguardando Providências Internas",
+  "data_situacao": "2026-10-27"
+ },
+ {
+  "casa": "camara",
+  "id": 2649008,
+  "identificacao": "PRL 2",
+  "tipo": "PRL",
+  "ementa": "Parecer do Relator, Dep. Delegado Caveira (PL-PA), pela aprovação, com substitutivo.",
+  "data_apresentacao": "2026-10-27",
+  "autores": [
+   220673
+  ],
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2649008",
+  "situacao": null,
+  "data_situacao": "2026-10-27"
+ },
+ {
+  "casa": "camara",
+  "id": 2649013,
+  "identificacao": "SBT 2",
+  "tipo": "SBT",
+  "ementa": "Altera a Lei nº 10.826, de 22 de dezembro de 2003, para dispor sobre a aquisição, a posse e o porte de arma de fogo e determinar a integração do Sistema Nacional de Armas (Sinarm) com o Sistema de Gerenciamento Militar de Armas (Sigma), e dá outras providências.",
+  "data_apresentacao": "2026-10-27",
+  "autores": [
+   220673
+  ],
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2649013",
+  "situacao": null,
+  "data_situacao": "2026-10-27"
+ },
+ {
+  "casa": "camara",
+  "id": 2649030,
+  "identificacao": "REC 19/2026",
+  "tipo": "REC",
+  "ementa": "Recurso contra a apreciação conclusiva do Projeto de Lei nº 3757/2020, que dispõe sobre a atividade de operação logística, sobre a emissão de títulos por empresas de armazéns gerais e dá outras providências.",
+  "data_apresentacao": "2026-10-27",
+  "autores": [
+   220672
+  ],
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2649030",
+  "situacao": null,
+  "data_situacao": "2026-10-27"
+ },
+ {
+  "casa": "senado",
+  "id": 9117328,
+  "identificacao": "PL 5651/2026",
+  "tipo": "PL",
+  "ementa": "Institui a Política Nacional de Qualificação e Empreendedorismo Jovem (PNQUE), destinada a pessoas de 16 (dezesseis) a 29 (vinte e nove) anos, estabelece diretrizes para a integração das ações de qualificação profissional, intermediação de mão de obra e apoio ao empreendedorismo, e dá outras providências.",
+  "data_apresentacao": "2026-10-23",
+  "autores": [
+   35
+  ],
+  "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/176080",
+  "situacao": "AGUARDANDO DESPACHO",
+  "data_situacao": "2026-10-23"
+ }
+]
