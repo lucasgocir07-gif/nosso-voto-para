@@ -182,6 +182,20 @@
    "publicado_em": null,
    "permalink": null,
    "erro": null
+  },
+  {
+   "id": 14,
+   "origem": "coleta",
+   "referencia": "proposicao:camara:2649499",
+   "periodo": "2026-10-23_a_2026-10-30",
+   "legenda": "📄 Nova proposta na Câmara: PL 5689/2026, de Dep. Airton Faleiro (PT), Dep. Dilvanda Faro (PT)\n\nA proposta cria regras no Código Penal e em lei trabalhista para proibir a discriminação por voto ou convicção política no trabalho e na economia. A medida afeta trabalhadores e empregadores.\n\n📎 Fonte: Câmara dos Deputados, dados abertos.\nhttps://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2649499\nℹ️ Resumo feito com ajuda de IA e revisado antes de publicar.\n\n#Pará #Congresso #NossoVotoPará #CâmaraDosDeputados #Trabalho",
+   "estado": "pendente",
+   "criado_em": "2026-10-30T10:41:13",
+   "id_mensagem": 88,
+   "id_pedido_legenda": null,
+   "publicado_em": null,
+   "permalink": null,
+   "erro": null
   }
  ]
 }

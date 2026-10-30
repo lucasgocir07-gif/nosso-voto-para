@@ -112,5 +112,11 @@
   "tema": "Economia e tributos",
   "resumo": "A proposta é um recurso contra a decisão final sobre um projeto de lei. O projeto trata das regras para a atividade de operação logística e para a emissão de títulos por empresas de armazéns gerais. O texto não deixa claro o efeito prático.",
   "afeta_para": false
+ },
+ "4e15376376e48a27a360d9fe58dd8902b7747e0f": {
+  "natureza": "Política pública",
+  "tema": "Trabalho e previdência",
+  "resumo": "A proposta cria regras no Código Penal e em lei trabalhista para proibir a discriminação por voto ou convicção política no trabalho e na economia. A medida afeta trabalhadores e empregadores.",
+  "afeta_para": false
  }
 }
