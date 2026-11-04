@@ -1,0 +1,116 @@
+[
+ {
+  "casa": "camara",
+  "id": 2649499,
+  "identificacao": "PL 5689/2026",
+  "tipo": "PL",
+  "ementa": "Acrescenta o art. 203-A ao Decreto-Lei nº 2.848, de 7 de dezembro de 1940 (Código Penal), para tipificar a discriminação por voto ou convicção política no trabalho e na atividade econômica, e altera o art. 1º da Lei nº 9.029, de 13 de abril de 1995, para incluir o voto e a convicção política entre os motivos de discriminação vedados nas relações de trabalho.",
+  "data_apresentacao": "2026-10-29",
+  "autores": [
+   204495,
+   220671
+  ],
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2649499",
+  "situacao": null,
+  "data_situacao": "2026-10-29"
+ },
+ {
+  "casa": "camara",
+  "id": 2649648,
+  "identificacao": "PLP 278/2026",
+  "tipo": "PLP",
+  "ementa": "Altera a Lei Complementar nº 64, de 18 de maio de 1990 (Lei de Inelegibilidades), para incluir, entre as causas de inelegibilidade decorrentes de condenação criminal, a lesão corporal praticada contra a mulher por razões da condição do sexo feminino.",
+  "data_apresentacao": "2026-10-30",
+  "autores": [
+   220676
+  ],
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2649648",
+  "situacao": null,
+  "data_situacao": "2026-10-30"
+ },
+ {
+  "casa": "camara",
+  "id": 2650012,
+  "identificacao": "PDL 1028/2026",
+  "tipo": "PDL",
+  "ementa": "Susta os efeitos da Portaria CGPCIND/DSPRAD/SEDIGI nº 2.272, de 28 de outubro de 2026, que atribuiu nova classificação indicativa ao programa “Record Kids – Desenhos Bíblicos”.",
+  "data_apresentacao": "2026-11-03",
+  "autores": [
+   220673
+  ],
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2650012",
+  "situacao": null,
+  "data_situacao": "2026-11-03"
+ },
+ {
+  "casa": "camara",
+  "id": 2650026,
+  "identificacao": "RIC 2879/2026",
+  "tipo": "RIC",
+  "ementa": "Requer informações ao Ministro de Estado da Justiça e Segurança Pública acerca dos fundamentos técnicos, administrativos e jurídicos da Portaria CGPCIND/DSPRAD/SEDIGI nº 2.272, de 28 de outubro de 2026, que atribuiu classificação indicativa de não recomendado para menores de 12 anos ao programa “Record Kids – Desenhos Bíblicos”, bem como solicita cópia integral do processo administrativo que fundamentou sua edição.",
+  "data_apresentacao": "2026-11-03",
+  "autores": [
+   220673
+  ],
+  "url": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2650026",
+  "situacao": "Aguardando Designação de Relator(a)",
+  "data_situacao": "2026-11-03"
+ },
+ {
+  "casa": "senado",
+  "id": 9119087,
+  "identificacao": "RQS 735/2026",
+  "tipo": "RQS",
+  "ementa": "Requer a realização de Sessão Especial destinada a celebrar o Dia do Biomédico.",
+  "data_apresentacao": "2026-10-29",
+  "autores": [
+   3806
+  ],
+  "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/176153",
+  "situacao": "APROVADA",
+  "data_situacao": "2026-11-03"
+ },
+ {
+  "casa": "senado",
+  "id": 9119612,
+  "identificacao": "PL 5735/2026",
+  "tipo": "PL",
+  "ementa": "Institui a Política Nacional de Coerência da Transição Ecológica e da Descarbonização (PNCTE); estabelece diretrizes para o alinhamento entre o Plano Nacional sobre Mudança do Clima e seus Planos Setoriais de Mitigação e de Adaptação, a Estratégia Nacional de Descarbonização Industrial e a política industrial Nova Indústria Brasil; integra o Sistema Brasileiro de Comércio de Emissões de Gases de Efeito Estufa, a Taxonomia Sustentável Brasileira, o Programa Selo Verde Brasil e as políticas de conversão de áreas degradadas; e altera a Lei nº 12.187, de 29 de dezembro de 2009.",
+  "data_apresentacao": "2026-11-03",
+  "autores": [
+   35
+  ],
+  "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/176164",
+  "situacao": "AGUARDANDO DESPACHO",
+  "data_situacao": "2026-11-03"
+ },
+ {
+  "casa": "senado",
+  "id": 9120051,
+  "identificacao": "PEC 19/2026",
+  "tipo": "PEC",
+  "ementa": "Dá nova redação ao art. 228 da Constituição Federal para alterar a menoridade penal.",
+  "data_apresentacao": "2026-11-03",
+  "autores": [
+   3806
+  ],
+  "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/176178",
+  "situacao": "MATÉRIA DESPACHADA",
+  "data_situacao": "2026-11-03"
+ },
+ {
+  "casa": "senado",
+  "id": 9120058,
+  "identificacao": "PEC 20/2026",
+  "tipo": "PEC",
+  "ementa": "Dá nova redação ao art. 228 da Constituição Federal para alterar a menoridade penal.",
+  "data_apresentacao": "2026-11-03",
+  "autores": [
+   4639,
+   35
+  ],
+  "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/176179",
+  "situacao": "MATÉRIA DESPACHADA",
+  "data_situacao": "2026-11-03"
+ }
+]
