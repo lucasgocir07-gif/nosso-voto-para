@@ -172,5 +172,23 @@
   "tema": "Política e Estado",
   "resumo": "Foi votada em segundo turno uma proposta para mudar vários artigos da Constituição Federal. O texto recebeu aprovação no Senado Federal.",
   "afeta_para": false
+ },
+ "8e75f6670daa1b30447e7b24d437c25a453f2f07": {
+  "natureza": "Procedimento",
+  "tema": "Política e Estado",
+  "resumo": "A proposta apresenta a redação final de um projeto anterior, concluindo a etapa de tramitação na Câmara dos Deputados.",
+  "afeta_para": false
+ },
+ "aac7fcc90194490e532bc8b9786f3f005a26d76f": {
+  "natureza": "Procedimento",
+  "tema": "Política e Estado",
+  "resumo": "A proposta apresenta a redação final de um projeto legislativo que já passou por votação. O texto não especifica quais pessoas ou regiões serão afetadas.",
+  "afeta_para": false
+ },
+ "e7487b78c9960867b2e99ae74ac5a89e34ebfb7a": {
+  "natureza": "Procedimento",
+  "tema": "Política e Estado",
+  "resumo": "A proposta apresenta a redação final de um projeto de lei após a votação no Plenário. O texto não detalha o efeito prático para a população.",
+  "afeta_para": false
  }
 }

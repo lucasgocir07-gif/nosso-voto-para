@@ -1,0 +1,58 @@
+{
+ "proposicao:camara:2649499": {
+  "natureza": "Política pública",
+  "tema": "Trabalho e previdência",
+  "resumo": "A proposta cria regras no Código Penal e em lei trabalhista para proibir a discriminação por voto ou convicção política no trabalho e na economia. A medida afeta trabalhadores e empregadores.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:camara:2649648": {
+  "natureza": "Política pública",
+  "tema": "Direitos e cidadania",
+  "resumo": "O projeto muda as regras para candidatura a cargos públicos. Ele impede que pessoas condenadas por lesão corporal contra a mulher participem de eleições. A medida afeta candidatos em todo o país.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:camara:2650012": {
+  "natureza": "Política pública",
+  "tema": "Cultura e esporte",
+  "resumo": "A proposta quer cancelar os efeitos de uma portaria que mudou a classificação indicativa do programa Record Kids - Desenhos Bíblicos. O texto não diz quem é afetado na prática.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:camara:2650026": {
+  "natureza": "Fiscalização",
+  "tema": null,
+  "resumo": null,
+  "afeta_para": null,
+  "tipo_votacao": null,
+  "fonte": "regra"
+ },
+ "proposicao:camara:2650502": {
+  "natureza": "Procedimento",
+  "tema": "Política e Estado",
+  "resumo": "A proposta apresenta a redação final de um projeto anterior, concluindo a etapa de tramitação na Câmara dos Deputados.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:camara:2650503": {
+  "natureza": "Procedimento",
+  "tema": "Política e Estado",
+  "resumo": "A proposta apresenta a redação final de um projeto legislativo que já passou por votação. O texto não especifica quais pessoas ou regiões serão afetadas.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:camara:2650504": {
+  "natureza": "Procedimento",
+  "tema": "Política e Estado",
+  "resumo": "A proposta apresenta a redação final de um projeto de lei após a votação no Plenário. O texto não detalha o efeito prático para a população.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ }
+}
