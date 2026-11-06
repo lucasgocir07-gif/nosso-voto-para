@@ -1,0 +1,162 @@
+[
+ {
+  "casa": "camara",
+  "id": 204495,
+  "nome": "Airton Faleiro",
+  "partido": "PT",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/204495.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 220676,
+  "nome": "Andreia Siqueira",
+  "partido": "PSB",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/220676.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 220675,
+  "nome": "Antônio Doido",
+  "partido": "MDB",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/220675.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 204496,
+  "nome": "Celso Sabino",
+  "partido": "PDT",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/204496.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 220673,
+  "nome": "Delegado Caveira",
+  "partido": "PL",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/220673.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 178908,
+  "nome": "Delegado Éder Mauro",
+  "partido": "PL",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/178908.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 220671,
+  "nome": "Dilvanda Faro",
+  "partido": "PT",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/220671.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 220674,
+  "nome": "Dra. Alessandra Haber",
+  "partido": "PODE",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/220674.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 74075,
+  "nome": "Elcione Barbalho",
+  "partido": "MDB",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/74075.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 220672,
+  "nome": "Henderson Pinto",
+  "partido": "UNIÃO",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/220672.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 178910,
+  "nome": "Joaquim Passarinho",
+  "partido": "PL",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/178910.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 74079,
+  "nome": "José Priante",
+  "partido": "MDB",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/74079.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 204497,
+  "nome": "Júnior Ferrari",
+  "partido": "PSD",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/204497.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 220677,
+  "nome": "Keniston Braga",
+  "partido": "MDB",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/220677.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 204498,
+  "nome": "Olival Marques",
+  "partido": "PODE",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/204498.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 74084,
+  "nome": "Raimundo Santos",
+  "partido": "PSD",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/74084.jpg"
+ },
+ {
+  "casa": "camara",
+  "id": 153423,
+  "nome": "Renilce Nicodemos",
+  "partido": "MDB",
+  "uf": "PA",
+  "foto": "https://www.camara.leg.br/internet/deputado/bandep/153423.jpg"
+ },
+ {
+  "casa": "senado",
+  "id": 4639,
+  "nome": "Beto Faro",
+  "partido": "PT",
+  "uf": "PA",
+  "foto": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador4639.jpg"
+ },
+ {
+  "casa": "senado",
+  "id": 35,
+  "nome": "Jader Barbalho",
+  "partido": "MDB",
+  "uf": "PA",
+  "foto": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador35.jpg"
+ },
+ {
+  "casa": "senado",
+  "id": 3806,
+  "nome": "Zequinha Marinho",
+  "partido": "PODE",
+  "uf": "PA",
+  "foto": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador3806.jpg"
+ }
+]

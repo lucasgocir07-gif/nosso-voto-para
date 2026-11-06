@@ -1,0 +1,114 @@
+{
+ "proposicao:camara:2649648": {
+  "natureza": "Política pública",
+  "tema": "Direitos e cidadania",
+  "resumo": "O projeto muda as regras para candidatura a cargos públicos. Ele impede que pessoas condenadas por lesão corporal contra a mulher participem de eleições. A medida afeta candidatos em todo o país.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:camara:2650012": {
+  "natureza": "Política pública",
+  "tema": "Cultura e esporte",
+  "resumo": "A proposta quer cancelar os efeitos de uma portaria que mudou a classificação indicativa do programa Record Kids - Desenhos Bíblicos. O texto não diz quem é afetado na prática.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:camara:2650026": {
+  "natureza": "Fiscalização",
+  "tema": null,
+  "resumo": null,
+  "afeta_para": null,
+  "tipo_votacao": null,
+  "fonte": "regra"
+ },
+ "proposicao:camara:2650502": {
+  "natureza": "Procedimento",
+  "tema": "Política e Estado",
+  "resumo": "A proposta apresenta a redação final de um projeto anterior, concluindo a etapa de tramitação na Câmara dos Deputados.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:camara:2650503": {
+  "natureza": "Procedimento",
+  "tema": "Política e Estado",
+  "resumo": "A proposta apresenta a redação final de um projeto legislativo que já passou por votação. O texto não especifica quais pessoas ou regiões serão afetadas.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:camara:2650504": {
+  "natureza": "Procedimento",
+  "tema": "Política e Estado",
+  "resumo": "A proposta apresenta a redação final de um projeto de lei após a votação no Plenário. O texto não detalha o efeito prático para a população.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:camara:2651243": {
+  "natureza": "Política pública",
+  "tema": "Segurança pública",
+  "resumo": "O projeto cria regras nacionais para prevenir e combater a fabricação, a venda e o uso de linhas cortantes em pipas. A proposta define ações de fiscalização, educação e punição administrativa. O texto afeta quem fabrica, vende ou solta pipas.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:senado:9119612": {
+  "natureza": "Política pública",
+  "tema": "Meio ambiente e clima",
+  "resumo": "A proposta cria uma política para unir regras sobre transição ecológica, indústria e redução de gases poluentes. Ela conecta planos de clima, comércio de emissões e programas ambientais. O texto não diz quem será afetado na prática.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:senado:9120051": {
+  "natureza": "Política pública",
+  "tema": "Segurança pública",
+  "resumo": "A proposta altera a idade em que uma pessoa pode ser responsabilizada criminalmente, modificando a Constituição. O texto não detalha quem será diretamente afetado no estado.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "proposicao:senado:9120058": {
+  "natureza": "Política pública",
+  "tema": "Segurança pública",
+  "resumo": "A proposta altera a idade mínima para responsabilização criminal na Constituição Federal. O texto não deixa claro o efeito prático para a população.",
+  "afeta_para": false,
+  "tipo_votacao": null,
+  "fonte": "ia"
+ },
+ "votacao:senado:7109": {
+  "natureza": null,
+  "tema": "Política e Estado",
+  "resumo": "O Senado votou pedidos para separar duas emendas e transformá-las em propostas individuais. Os pedidos foram aprovados.",
+  "afeta_para": false,
+  "tipo_votacao": "Procedimento",
+  "fonte": "ia"
+ },
+ "votacao:senado:7110": {
+  "natureza": null,
+  "tema": "Segurança pública",
+  "resumo": "Foi votada em primeiro turno uma proposta de emenda à Constituição que altera vários artigos sobre direitos, organização do Estado e segurança pública. A proposta foi aprovada pelo Senado Federal.",
+  "afeta_para": false,
+  "tipo_votacao": "Mérito",
+  "fonte": "ia"
+ },
+ "votacao:senado:7111": {
+  "natureza": null,
+  "tema": "Segurança pública",
+  "resumo": "O Senado votou a Emenda número 85 da Proposta de Emenda à Constituição número 18 de 2025, que altera diversos artigos da Constituição sobre regras e competências. A emenda foi aprovada.",
+  "afeta_para": false,
+  "tipo_votacao": "Mérito",
+  "fonte": "ia"
+ },
+ "votacao:senado:7112": {
+  "natureza": null,
+  "tema": "Política e Estado",
+  "resumo": "Foi votada em segundo turno uma proposta para mudar vários artigos da Constituição Federal. O texto recebeu aprovação no Senado Federal.",
+  "afeta_para": false,
+  "tipo_votacao": "Mérito",
+  "fonte": "ia"
+ }
+}

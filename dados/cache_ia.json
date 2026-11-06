@@ -190,5 +190,23 @@
   "tema": "Política e Estado",
   "resumo": "A proposta apresenta a redação final de um projeto de lei após a votação no Plenário. O texto não detalha o efeito prático para a população.",
   "afeta_para": false
+ },
+ "686f8e0b02082e269d27993eda57dd5623c3da46": {
+  "natureza": "Política pública",
+  "tema": "Segurança pública",
+  "resumo": "O projeto cria regras nacionais para prevenir e combater a fabricação, a venda e o uso de linhas cortantes em pipas. A proposta define ações de fiscalização, educação e punição administrativa. O texto afeta quem fabrica, vende ou solta pipas.",
+  "afeta_para": false
+ },
+ "98b1b542cbc5fc4c0c3fb265d3e859baceba0759": {
+  "natureza": "Política pública",
+  "tema": "Segurança pública",
+  "resumo": "A proposta altera a idade em que uma pessoa pode ser responsabilizada criminalmente, modificando a Constituição. O texto não detalha quem será diretamente afetado no estado.",
+  "afeta_para": false
+ },
+ "39fc9b20b7b60a097eb57379686525edd1a1f382": {
+  "natureza": "Política pública",
+  "tema": "Segurança pública",
+  "resumo": "A proposta altera a idade mínima para responsabilização criminal na Constituição Federal. O texto não deixa claro o efeito prático para a população.",
+  "afeta_para": false
  }
 }

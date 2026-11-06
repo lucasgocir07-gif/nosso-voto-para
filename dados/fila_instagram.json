@@ -308,6 +308,20 @@
    "publicado_em": null,
    "permalink": null,
    "erro": null
+  },
+  {
+   "id": 23,
+   "origem": "coleta",
+   "referencia": "proposicao:camara:2651243",
+   "periodo": "2026-10-30_a_2026-11-06",
+   "legenda": "📄 Nova proposta na Câmara: PL 5784/2026, de Dep. Renilce Nicodemos (MDB)\n\nO projeto cria regras nacionais para prevenir e combater a fabricação, a venda e o uso de linhas cortantes em pipas. A proposta define ações de fiscalização, educação e punição administrativa. O texto afeta quem fabrica, vende ou solta pipas.\n\n📎 Fonte: Câmara dos Deputados, dados abertos.\nhttps://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2651243\nℹ️ Resumo feito com ajuda de IA e revisado antes de publicar.\n\n#Pará #Congresso #NossoVotoPará #CâmaraDosDeputados #SegurançaPública",
+   "estado": "pendente",
+   "criado_em": "2026-11-06T10:54:41",
+   "id_mensagem": 113,
+   "id_pedido_legenda": null,
+   "publicado_em": null,
+   "permalink": null,
+   "erro": null
   }
  ]
 }
