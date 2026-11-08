@@ -1,0 +1,26 @@
+[
+ {
+  "casa": "senado",
+  "id": 4639,
+  "nome": "Beto Faro",
+  "partido": "PT",
+  "uf": "PA",
+  "foto": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador4639.jpg"
+ },
+ {
+  "casa": "senado",
+  "id": 35,
+  "nome": "Jader Barbalho",
+  "partido": "MDB",
+  "uf": "PA",
+  "foto": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador35.jpg"
+ },
+ {
+  "casa": "senado",
+  "id": 3806,
+  "nome": "Zequinha Marinho",
+  "partido": "PODE",
+  "uf": "PA",
+  "foto": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador3806.jpg"
+ }
+]

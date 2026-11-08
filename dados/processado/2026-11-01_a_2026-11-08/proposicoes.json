@@ -1,0 +1,45 @@
+[
+ {
+  "casa": "senado",
+  "id": 9119612,
+  "identificacao": "PL 5735/2026",
+  "tipo": "PL",
+  "ementa": "Institui a Política Nacional de Coerência da Transição Ecológica e da Descarbonização (PNCTE); estabelece diretrizes para o alinhamento entre o Plano Nacional sobre Mudança do Clima e seus Planos Setoriais de Mitigação e de Adaptação, a Estratégia Nacional de Descarbonização Industrial e a política industrial Nova Indústria Brasil; integra o Sistema Brasileiro de Comércio de Emissões de Gases de Efeito Estufa, a Taxonomia Sustentável Brasileira, o Programa Selo Verde Brasil e as políticas de conversão de áreas degradadas; e altera a Lei nº 12.187, de 29 de dezembro de 2009.",
+  "data_apresentacao": "2026-11-03",
+  "autores": [
+   35
+  ],
+  "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/176164",
+  "situacao": "AGUARDANDO DESPACHO",
+  "data_situacao": "2026-11-03"
+ },
+ {
+  "casa": "senado",
+  "id": 9120051,
+  "identificacao": "PEC 19/2026",
+  "tipo": "PEC",
+  "ementa": "Dá nova redação ao art. 228 da Constituição Federal para alterar a maioridade penal.",
+  "data_apresentacao": "2026-11-03",
+  "autores": [
+   3806
+  ],
+  "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/176178",
+  "situacao": "AGUARDANDO DESPACHO",
+  "data_situacao": "2026-11-03"
+ },
+ {
+  "casa": "senado",
+  "id": 9120058,
+  "identificacao": "PEC 20/2026",
+  "tipo": "PEC",
+  "ementa": "Dá nova redação ao art. 228 da Constituição Federal para alterar a maioridade penal.",
+  "data_apresentacao": "2026-11-03",
+  "autores": [
+   4639,
+   35
+  ],
+  "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/176179",
+  "situacao": "AGUARDANDO DESPACHO",
+  "data_situacao": "2026-11-03"
+ }
+]

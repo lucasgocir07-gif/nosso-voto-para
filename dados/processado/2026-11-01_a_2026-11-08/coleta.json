@@ -1,0 +1,7 @@
+{
+ "inicio": "2026-11-01",
+ "fim": "2026-11-08",
+ "falhas": [
+  "Câmara: HTTPSConnectionPool(host='dadosabertos.camara.leg.br', port=443): Max retries exceeded with url: /api/v2/deputados?siglaUf=PA&itens=100&ordem=ASC&ordenarPor=nome (Caused by ConnectTimeoutError(<HTTPSConnection(host='dadosabertos.camara.leg.br', port=443) at 0x7d99072acd40>, 'Connection to dadosabertos.camara.leg.br timed out. (connect timeout=60)'))"
+ ]
+}
